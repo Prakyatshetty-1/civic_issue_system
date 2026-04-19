@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dept Complaints — Department Panel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background: #f0f2f5; color: #333; }
+    nav {
+      background: #fff; padding: 15px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    h1 { margin-bottom: 30px; }
+    .card {
+      background: #fff; padding: 25px; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px;
+    }
+    .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .category { font-weight: 600; font-size: 16px; color: #3B8BD4; }
+    .address { font-size: 14px; color: #888; margin-bottom: 10px; display: flex; align-items: center; }
+    .description { font-size: 15px; color: #444; margin-bottom: 15px; line-height: 1.5; }
+    .status-form {
+      background: #f9f9f9; padding: 15px; border-radius: 8px;
+      margin-top: 15px; display: flex; gap: 10px; align-items: flex-end;
+    }
+    .status-form select, .status-form input {
+      padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;
+    }
+    .status-form button {
+      background: #9F77DD; color: #fff; border: none; padding: 9px 18px;
+      border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px;
+    }
+    .status-form button:hover { background: #8258c2; }
+    .back-link { display: block; text-align: center; margin-top: 20px; font-size: 14px; color: #3B8BD4; text-decoration: none; }
+    .empty-state { text-align: center; margin-top: 50px; color: #888; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/dept/dashboard.html" style="text-decoration:none; color:inherit;"><h2>🏙️ Department Panel</h2></a>
+  <button onclick="logout()">Logout</button>
+</nav>
+
+<div class="container">
+  <h1>📋 Dept Complaints</h1>
+  <div id="complaints-list">
+    <p class="empty-state">Loading assigned complaints...</p>
+  </div>
+  <a href="/dept/dashboard.html" class="back-link">Back to Dashboard</a>
+</div>
+
+<script src="/js/auth.js"></script>
+<script>
+  requireAuth("ROLE_DEPT_ADMIN");
+
+  async function loadDeptComplaints() {
+    const listEl = document.getElementById("complaints-list");
+    try {
+      const data = await apiFetch("/api/department/complaints");
+      if (!data || data.length === 0) {
+        listEl.innerHTML = '<p class="empty-state">No complaints assigned to your department yet.</p>';
+        return;
+      }
+
+      listEl.innerHTML = data.map(c => `
+        <div class="card">
+          <div class="status-header">
+            <span class="category">${c.category} (User: ${c.user.name})</span>
+            ${statusBadge(c.status)}
+          </div>
+          <div class="address">📍 ${c.address}</div>
+          <p class="description">${c.description}</p>
+          <div style="font-size:12px; color:#aaa">Submitted: ${new Date(c.createdAt).toLocaleString()}</div>
+
+          <div class="status-form">
+            <div style="flex:1">
+              <label style="display:block; font-size:12px; color:#666; margin-bottom:4px">Update Status</label>
+              <select id="status-${c.id}" style="width:100%">
+                <option value="ASSIGNED" ${c.status === 'ASSIGNED' ? 'selected' : ''}>Assigned</option>
+                <option value="IN_PROGRESS" ${c.status === 'IN_PROGRESS' ? 'selected' : ''}>In Progress</option>
+                <option value="RESOLVED" ${c.status === 'RESOLVED' ? 'selected' : ''}>Resolved</option>
+              </select>
+            </div>
+            <div style="flex:2">
+              <label style="display:block; font-size:12px; color:#666; margin-bottom:4px">Update Comment</label>
+              <input id="comment-${c.id}" type="text" value="${c.adminComment || ''}" placeholder="Add an update..." style="width:100%"/>
+            </div>
+            <button onclick="updateStatus(${c.id})">Update</button>
+          </div>
+        </div>
+      `).join("");
+    } catch (e) {
+      listEl.innerHTML = '<p class="empty-state" style="color:#e24b4a">Error loading department complaints.</p>';
+    }
+  }
+
+  async function updateStatus(id) {
+    const status = document.getElementById(`status-${id}`).value;
+    const adminComment = document.getElementById(`comment-${id}`).value.trim();
+
+    try {
+      const data = await apiFetch(`/api/department/update-status/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ status, adminComment })
+      });
+
+      if (data?.message) {
+        alert(data.message);
+        loadDeptComplaints();
+      } else {
+        alert(data?.error || "Update failed.");
+      }
+    } catch (e) {
+      alert("Server error.");
+    }
+  }
+
+  loadDeptComplaints();
+</script>
+</body>
+</html>

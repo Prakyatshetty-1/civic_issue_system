@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Complaints — Admin Panel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background: #f0f2f5; color: #333; }
+    nav {
+      background: #fff; padding: 15px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    h1 { margin-bottom: 30px; }
+    .card {
+      background: #fff; padding: 25px; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px;
+    }
+    .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .category { font-weight: 600; font-size: 16px; color: #3B8BD4; }
+    .address { font-size: 14px; color: #888; margin-bottom: 10px; display: flex; align-items: center; }
+    .description { font-size: 15px; color: #444; margin-bottom: 15px; line-height: 1.5; }
+    .assign-form {
+      background: #f9f9f9; padding: 15px; border-radius: 8px;
+      margin-top: 15px; display: flex; gap: 10px; align-items: flex-end;
+    }
+    .assign-form select, .assign-form input {
+      padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;
+    }
+    .assign-form button {
+      background: #EF9F27; color: #fff; border: none; padding: 9px 18px;
+      border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px;
+    }
+    .assign-form button:hover { background: #d68b1a; }
+    .back-link { display: block; text-align: center; margin-top: 20px; font-size: 14px; color: #3B8BD4; text-decoration: none; }
+    .empty-state { text-align: center; margin-top: 50px; color: #888; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/admin/dashboard.html" style="text-decoration:none; color:inherit;"><h2>🏙️ Admin Panel</h2></a>
+  <button onclick="logout()">Logout</button>
+</nav>
+
+<div class="container">
+  <h1>📋 All Complaints</h1>
+  <div id="complaints-list">
+    <p class="empty-state">Loading all complaints...</p>
+  </div>
+  <a href="/admin/dashboard.html" class="back-link">Back to Dashboard</a>
+</div>
+
+<script src="/js/auth.js"></script>
+<script>
+  requireAuth("ROLE_MAIN_ADMIN");
+
+  async function loadAllComplaints() {
+    const listEl = document.getElementById("complaints-list");
+    try {
+      const data = await apiFetch("/api/admin/complaints");
+      if (!data || data.length === 0) {
+        listEl.innerHTML = '<p class="empty-state">No complaints reported yet.</p>';
+        return;
+      }
+
+      listEl.innerHTML = data.map(c => `
+        <div class="card">
+          <div class="status-header">
+            <span class="category">${c.category} (Reported by ${c.user.name})</span>
+            ${statusBadge(c.status)}
+          </div>
+          <div class="address">📍 ${c.address}</div>
+          <p class="description">${c.description}</p>
+          <div style="font-size:12px; color:#aaa">Submitted: ${new Date(c.createdAt).toLocaleString()}</div>
+
+          ${c.status === 'OPEN' ? `
+            <div class="assign-form">
+              <div style="flex:1">
+                <label style="display:block; font-size:12px; color:#666; margin-bottom:4px">Assign Department</label>
+                <select id="dept-${c.id}" style="width:100%">
+                  <option value="SANITATION">Sanitation</option>
+                  <option value="ELECTRICITY">Electricity</option>
+                  <option value="WATER">Water</option>
+                </select>
+              </div>
+              <div style="flex:2">
+                <label style="display:block; font-size:12px; color:#666; margin-bottom:4px">Admin Comment</label>
+                <input id="comment-${c.id}" type="text" placeholder="Add a comment..." style="width:100%"/>
+              </div>
+              <button onclick="assignComplaint(${c.id})">Assign</button>
+            </div>
+          ` : `
+            <div style="margin-top:15px; font-size:14px; color:#666">
+              <strong>Assigned to:</strong> ${c.department ? c.department.name : "N/A"}<br/>
+              <strong>Admin Comment:</strong> ${c.adminComment || "No comment"}
+            </div>
+          `}
+        </div>
+      `).join("");
+    } catch (e) {
+      listEl.innerHTML = '<p class="empty-state" style="color:#e24b4a">Error loading all complaints.</p>';
+    }
+  }
+
+  async function assignComplaint(id) {
+    const departmentName = document.getElementById(`dept-${id}`).value;
+    const adminComment = document.getElementById(`comment-${id}`).value.trim();
+
+    try {
+      const data = await apiFetch(`/api/admin/assign/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ departmentName, adminComment })
+      });
+
+      if (data?.message) {
+        alert(data.message);
+        loadAllComplaints();
+      } else {
+        alert(data?.error || "Assignment failed.");
+      }
+    } catch (e) {
+      alert("Server error.");
+    }
+  }
+
+  loadAllComplaints();
+</script>
+</body>
+</html>

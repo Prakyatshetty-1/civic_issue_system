@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Civic Issue System — Register</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 { text-align: center; margin-bottom: 8px; color: #1a1a1a; }
+    p.sub { text-align: center; color: #888; margin-bottom: 28px; font-size: 14px; }
+    label { display: block; font-size: 13px; color: #555; margin-bottom: 4px; }
+    input {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid #ddd; border-radius: 8px;
+      font-size: 15px; margin-bottom: 18px;
+      outline: none; transition: border .2s;
+    }
+    input:focus { border-color: #3B8BD4; }
+    button {
+      width: 100%; padding: 12px;
+      background: #3B8BD4; color: #fff;
+      border: none; border-radius: 8px;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: background .2s;
+    }
+    button:hover { background: #2a6fb5; }
+    .footer { text-align: center; margin-top: 20px; font-size: 13px; color: #888; }
+    .footer a { color: #3B8BD4; text-decoration: none; }
+    #error { color: #e24b4a; font-size: 13px; text-align: center; margin-top: 8px; }
+    #success { color: #1d9e75; font-size: 13px; text-align: center; margin-top: 8px; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h2>🏙️ Civic Issue System</h2>
+  <p class="sub">Create an account to report issues</p>
+
+  <label for="name">Full Name</label>
+  <input type="text" id="name" placeholder="John Doe"/>
+
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="you@example.com"/>
+
+  <label for="password">Password (min 6 chars)</label>
+  <input type="password" id="password" placeholder="Choose a password"/>
+
+  <button onclick="handleRegister()">Register</button>
+  <p id="error"></p>
+  <p id="success"></p>
+
+  <div class="footer">
+    Already have an account? <a href="/index.html">Login</a>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+<script>
+  async function handleRegister() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const errorEl = document.getElementById("error");
+    const successEl = document.getElementById("success");
+    errorEl.textContent = "";
+    successEl.textContent = "";
+
+    if (!name || !email || !password) {
+      errorEl.textContent = "All fields are required.";
+      return;
+    }
+
+    if (password.length < 6) {
+      errorEl.textContent = "Password must be at least 6 characters.";
+      return;
+    }
+
+    try {
+      const data = await apiFetch("/api/auth/register", {
+        method: "POST",
+        body: JSON.stringify({ name, email, password })
+      });
+
+      if (data?.message) {
+        successEl.textContent = data.message;
+        setTimeout(() => window.location.href = "/index.html", 2000);
+      } else {
+        errorEl.textContent = data?.error || "Registration failed.";
+      }
+    } catch (e) {
+      errorEl.textContent = "Server error. Please try again.";
+    }
+  }
+</script>
+</body>
+</html>

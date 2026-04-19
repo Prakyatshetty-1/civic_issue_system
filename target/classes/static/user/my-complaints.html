@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Complaints — Civic Issue System</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background: #f0f2f5; color: #333; }
+    nav {
+      background: #fff; padding: 15px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+    h1 { margin-bottom: 30px; }
+    .card {
+      background: #fff; padding: 25px; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px;
+    }
+    .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .category { font-weight: 600; font-size: 16px; color: #3B8BD4; }
+    .address { font-size: 14px; color: #888; margin-bottom: 10px; display: flex; align-items: center; }
+    .description { font-size: 15px; color: #444; margin-bottom: 15px; line-height: 1.5; }
+    .admin-comment {
+      background: #f9f9f9; padding: 12px; border-radius: 6px;
+      border-left: 4px solid #3B8BD4; font-size: 14px; margin-top: 15px;
+    }
+    .back-link { display: block; text-align: center; margin-top: 20px; font-size: 14px; color: #3B8BD4; text-decoration: none; }
+    .empty-state { text-align: center; margin-top: 50px; color: #888; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/user/dashboard.html" style="text-decoration:none; color:inherit;"><h2>🏙️ Civic Issue System</h2></a>
+  <button onclick="logout()">Logout</button>
+</nav>
+
+<div class="container">
+  <h1>📋 My Complaints</h1>
+  <div id="complaints-list">
+    <p class="empty-state">Loading complaints...</p>
+  </div>
+  <a href="/user/dashboard.html" class="back-link">Back to Dashboard</a>
+</div>
+
+<script src="/js/auth.js"></script>
+<script>
+  requireAuth("ROLE_USER");
+
+  async function loadComplaints() {
+    const listEl = document.getElementById("complaints-list");
+    try {
+      const data = await apiFetch("/api/user/complaints");
+      if (!data || data.length === 0) {
+        listEl.innerHTML = '<p class="empty-state">No complaints submitted yet. <a href="/user/report.html">Report one</a>.</p>';
+        return;
+      }
+
+      listEl.innerHTML = data.map(c => `
+        <div class="card">
+          <div class="status-header">
+            <span class="category">${c.category}</span>
+            ${statusBadge(c.status)}
+          </div>
+          <div class="address">📍 ${c.address}</div>
+          <p class="description">${c.description}</p>
+          <div style="font-size:12px; color:#aaa">Submitted: ${new Date(c.createdAt).toLocaleString()}</div>
+          ${c.adminComment ? `
+            <div class="admin-comment">
+              <strong>Admin Update:</strong> ${c.adminComment}
+            </div>
+          ` : ""}
+        </div>
+      `).join("");
+    } catch (e) {
+      listEl.innerHTML = '<p class="empty-state" style="color:#e24b4a">Error loading complaints.</p>';
+    }
+  }
+
+  loadComplaints();
+</script>
+</body>
+</html>
