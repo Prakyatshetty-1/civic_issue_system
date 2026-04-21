@@ -1,66 +1,348 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Dashboard — Civic Issue System</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: sans-serif; background: #f0f2f5; color: #333; }
-    nav {
-      background: #fff; padding: 15px 40px;
-      display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-    .welcome { margin-bottom: 30px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card {
-      background: #fff; padding: 30px; border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center;
-      text-decoration: none; color: inherit; transition: transform .2s;
-    }
-    .card:hover { transform: translateY(-4px); }
-    .card h3 { margin-bottom: 10px; color: #3B8BD4; }
-    .card p { color: #666; font-size: 14px; }
-    .btn-logout {
-      background: #f0f2f5; padding: 8px 16px; border-radius: 6px;
-      font-size: 14px; font-weight: 500; cursor: pointer; border: none;
-    }
-  </style>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Citizen Dashboard - Civic Issue Reporting</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "inverse-primary": "#4b5f84",
+                        "outline": "#8e9099",
+                        "surface-variant": "#2d3449",
+                        "on-primary-fixed-variant": "#33476b",
+                        "on-surface": "#dae2fd",
+                        "surface-container-highest": "#2d3449",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#211240",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary": "#362856",
+                        "on-primary-fixed": "#021b3d",
+                        "secondary": "#c0c7d6",
+                        "on-surface-variant": "#c4c6cf",
+                        "inverse-surface": "#dae2fd",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "primary": "#b2c7f1",
+                        "surface": "#0b1326",
+                        "on-background": "#dae2fd",
+                        "on-error": "#690005",
+                        "on-primary-container": "#eff2ff",
+                        "on-tertiary-fixed-variant": "#4d3f6e",
+                        "tertiary": "#d0bef6",
+                        "surface-dim": "#0b1326",
+                        "primary-container": "#5b6f95",
+                        "secondary-container": "#404754",
+                        "tertiary-fixed": "#eaddff",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#b2c7f1",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#283044",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#d0bef6",
+                        "secondary-fixed": "#dce2f3",
+                        "on-secondary-fixed": "#151c27",
+                        "tertiary-container": "#766799",
+                        "on-secondary": "#2a313d",
+                        "outline-variant": "#44474e",
+                        "primary-fixed": "#d7e3ff",
+                        "surface-tint": "#b2c7f1",
+                        "on-secondary-container": "#aeb5c5",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-primary": "#1b3053",
+                        "surface-container": "#171f33",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary-container": "#f8f0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body>
-<nav>
-  <h2>🏙️ Civic Issue System</h2>
-  <div>
-    <span id="user-name" style="margin-right:15px; font-weight:500"></span>
-    <button class="btn-logout" onclick="logout()">Logout</button>
-  </div>
-</nav>
-
-<div class="container">
-  <div class="welcome">
-    <h1>Welcome, <span id="welcome-name"></span></h1>
-    <p>Report civic issues in your area and track their status.</p>
-  </div>
-
-  <div class="grid">
-    <a href="/user/report.html" class="card">
-      <h3>📢 Report Issue</h3>
-      <p>Submit a new complaint about potholes, garbage, or streetlights.</p>
-    </a>
-    <a href="/user/my-complaints.html" class="card">
-      <h3>📋 My Complaints</h3>
-      <p>Track the status of issues you've already reported.</p>
-    </a>
-  </div>
+<body class="bg-surface-dim text-on-surface antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-[#131b2e] dark:bg-[#131b2e] text-[#5B6F95] font-['Inter'] body-md leading-relaxed label-sm uppercase tracking-[0.05em] border-r border-slate-800/20 shadow-[40px_0_40px_rgba(218,226,253,0.03)] fixed left-0 top-0 h-screen w-64 z-40 hidden md:flex flex-col py-6 px-4">
+<div class="flex items-center gap-4 mb-12 px-4">
+<div class="h-10 w-10 rounded bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">account_balance</span>
 </div>
+<div>
+<h1 class="text-xl font-bold tracking-tighter text-slate-100 uppercase">CIVIC</h1>
+<p class="text-xs text-slate-400 capitalize tracking-normal">Admin Monolith</p>
+</div>
+</div>
+<ul class="flex flex-col gap-2 flex-grow">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] active:scale-95 transition-transform" href="/user/dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform" href="/user/report.html">
+<span class="material-symbols-outlined">assessment</span>
+                    Reports
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform" href="/user/my-complaints.html">
+<span class="material-symbols-outlined">report_problem</span>
+                    My Issues
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-error hover:text-error/80 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform cursor-pointer" onclick="logout()">
+<span class="material-symbols-outlined">logout</span>
+                    Logout
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 relative min-h-0">
+<!-- TopNavBar -->
+<header class="bg-[#0b1326]/80 backdrop-blur-xl text-[#5B6F95] font-['Inter'] text-sm font-medium border-b border-white/5 fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 z-30 flex items-center justify-between px-8">
+<div class="flex-1 flex items-center gap-4">
+<div class="relative w-64 focus-within:ring-2 focus-within:ring-[#5B6F95]/40 rounded-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/15 text-slate-200 pl-10 pr-4 py-2 rounded-md focus:outline-none focus:border-outline-variant/40 focus:ring-0 text-sm transition-colors" placeholder="Search issues..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-slate-100 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface-dim"></span>
+</button>
+<button class="text-slate-400 hover:text-slate-100 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-white/5">
+<span id="user-name" class="text-slate-300"></span>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant/20" data-alt="Professional headshot of a man with short hair wearing a dark suit against a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-isJwETwxMSSuahkwfIOnd1zQ55fFSE91aRM-SerrYE6nr2IrWjKCIVe23SDw9FCVwWDifY8Fw-NfpjVdZd3lRt5sjCgR8Ujmnc6HPKngJfrGoOF_dn43idJq4-YTE8zbn2CSxu6YevsAPqnqvHSSyWOybHOF2M-bJRpqBk-Dm9jIuZqku1A8GEL68J4I8WDwcNGmyGYKPdrxqmQDLq5cIW4uc7WgtYrAZjG7JaU8LDZXdv0FvYI5NMaCRcTYnoGrtnW9jZlR7sQo"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto pt-24 px-8 pb-12 bg-surface">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10">
+<div>
+<h2 class="text-[2.75rem] font-headline font-extrabold tracking-[-0.02em] leading-none mb-2">Citizen Dashboard</h2>
+<p class="text-body text-secondary text-sm">Real-time overview of civic infrastructure health.</p>
+</div>
+<button onclick="window.location.href='/user/report.html'" class="bg-gradient-to-br from-primary-container to-primary text-on-primary-container px-6 py-3 rounded-md font-medium text-sm hover:opacity-90 transition-opacity flex items-center gap-2 shadow-[0_4px_24px_rgba(178,199,241,0.15)] whitespace-nowrap">
+<span class="material-symbols-outlined text-lg">add</span>
+                    Report New Issue
+                </button>
+</div>
+<!-- Bento Grid Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<!-- Card 1: Total -->
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="bg-surface-container-highest p-2 rounded-md">
+<span class="material-symbols-outlined text-secondary">assignment</span>
+</div>
+<span class="text-xs uppercase tracking-[0.05em] text-secondary font-medium">Total Reports</span>
+</div>
+<div class="relative z-10">
+<div class="text-4xl font-bold tracking-tight mb-1 text-on-surface">1,248</div>
+<div class="flex items-center gap-1 text-xs text-primary">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+12% this month</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Open -->
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden group border border-error/10">
+<div class="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="bg-surface-container-highest p-2 rounded-md border border-error/20">
+<span class="material-symbols-outlined text-error">error</span>
+</div>
+<span class="text-xs uppercase tracking-[0.05em] text-error/80 font-medium flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+                            Open
+                        </span>
+</div>
+<div class="relative z-10">
+<div class="text-4xl font-bold tracking-tight mb-1 text-on-surface">84</div>
+<div class="flex items-center gap-1 text-xs text-secondary">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>Avg. age 4.2 days</span>
+</div>
+</div>
+</div>
+<!-- Card 3: In Progress -->
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden group">
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="bg-surface-container-highest p-2 rounded-md">
+<span class="material-symbols-outlined text-tertiary">engineering</span>
+</div>
+<span class="text-xs uppercase tracking-[0.05em] text-tertiary font-medium flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                            In Progress
+                        </span>
+</div>
+<div class="relative z-10">
+<div class="text-4xl font-bold tracking-tight mb-1 text-on-surface">312</div>
+<div class="flex items-center gap-1 text-xs text-secondary">
+<span class="material-symbols-outlined text-[14px]">group</span>
+<span>24 active crews</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Resolved -->
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden group">
+<div class="flex justify-between items-start mb-6 relative z-10">
+<div class="bg-surface-container-highest p-2 rounded-md">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+</div>
+<span class="text-xs uppercase tracking-[0.05em] text-on-tertiary-container font-medium flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                            Resolved
+                        </span>
+</div>
+<div class="relative z-10">
+<div class="text-4xl font-bold tracking-tight mb-1 text-on-surface">852</div>
+<div class="flex items-center gap-1 text-xs text-secondary">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+<span>94% within SLA</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Data Canvas -->
+<div class="bg-surface-container rounded-xl shadow-[40px_0_40px_rgba(218,226,253,0.03)] border border-outline-variant/10 flex flex-col h-[600px]">
+<div class="p-6 border-b border-surface-container-lowest/50 flex justify-between items-center shrink-0">
+<h3 class="text-[1.375rem] font-headline font-semibold tracking-tight text-on-surface">Recent Complaints</h3>
+<button class="text-sm text-secondary hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                    </button>
+</div>
+<div class="overflow-auto flex-1 custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container/95 backdrop-blur-md z-10 shadow-[0_1px_0_rgba(68,71,78,0.1)]">
+<tr>
+<th class="py-4 px-6 text-xs font-label uppercase tracking-[0.05em] text-secondary font-medium whitespace-nowrap">Issue ID</th>
+<th class="py-4 px-6 text-xs font-label uppercase tracking-[0.05em] text-secondary font-medium">Description</th>
+<th class="py-4 px-6 text-xs font-label uppercase tracking-[0.05em] text-secondary font-medium">Location</th>
+<th class="py-4 px-6 text-xs font-label uppercase tracking-[0.05em] text-secondary font-medium">Reported</th>
+<th class="py-4 px-6 text-xs font-label uppercase tracking-[0.05em] text-secondary font-medium text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm font-body divide-y divide-surface-container-lowest/30">
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-5 px-6 whitespace-nowrap text-primary font-medium">#C-8829</td>
+<td class="py-5 px-6 text-on-surface-variant max-w-md truncate">Pothole on main intersection causing severe traffic delay and vehicle damage risks.</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">Downtown Dist.</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">10 mins ago</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2 bg-surface-container-lowest border border-error/20 px-3 py-1 rounded-full">
+<div class="w-1.5 h-1.5 rounded-full bg-error"></div>
+<span class="text-xs font-medium text-error">Open</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-5 px-6 whitespace-nowrap text-primary font-medium">#C-8828</td>
+<td class="py-5 px-6 text-on-surface-variant max-w-md truncate">Streetlight outage along pedestrian walkway.</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">Northside Park</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">2 hours ago</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2 bg-surface-container-lowest border border-tertiary/20 px-3 py-1 rounded-full">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
+<span class="text-xs font-medium text-tertiary">In Progress</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-5 px-6 whitespace-nowrap text-primary font-medium">#C-8827</td>
+<td class="py-5 px-6 text-on-surface-variant max-w-md truncate">Water main break flooding residential street.</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">West End</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">Yesterday</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2 bg-surface-container-lowest border border-error/20 px-3 py-1 rounded-full">
+<div class="w-1.5 h-1.5 rounded-full bg-error"></div>
+<span class="text-xs font-medium text-error">Open</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-5 px-6 whitespace-nowrap text-primary font-medium">#C-8826</td>
+<td class="py-5 px-6 text-on-surface-variant max-w-md truncate">Graffiti on historical monument facade.</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">Civic Square</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">2 days ago</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2 bg-surface-container-lowest border border-on-tertiary-container/20 px-3 py-1 rounded-full">
+<div class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></div>
+<span class="text-xs font-medium text-on-tertiary-container">Resolved</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors group cursor-pointer">
+<td class="py-5 px-6 whitespace-nowrap text-primary font-medium">#C-8825</td>
+<td class="py-5 px-6 text-on-surface-variant max-w-md truncate">Overgrown vegetation blocking stop sign visibility.</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">East Suburbs</td>
+<td class="py-5 px-6 whitespace-nowrap text-secondary">2 days ago</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2 bg-surface-container-lowest border border-tertiary/20 px-3 py-1 rounded-full">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
+<span class="text-xs font-medium text-tertiary">In Progress</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(68, 71, 78, 0.3);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(68, 71, 78, 0.5);
+        }
+    </style>
 
 <script src="/js/auth.js"></script>
 <script>
   requireAuth("ROLE_USER");
-  document.getElementById("user-name").textContent = getName();
-  document.getElementById("welcome-name").textContent = getName();
+  document.getElementById("user-name").textContent = getName() || "Citizen";
 </script>
 </body>
 </html>

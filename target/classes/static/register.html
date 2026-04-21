@@ -1,109 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Civic Issue System — Register</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: sans-serif;
-      background: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-    h2 { text-align: center; margin-bottom: 8px; color: #1a1a1a; }
-    p.sub { text-align: center; color: #888; margin-bottom: 28px; font-size: 14px; }
-    label { display: block; font-size: 13px; color: #555; margin-bottom: 4px; }
-    input {
-      width: 100%; padding: 10px 14px;
-      border: 1px solid #ddd; border-radius: 8px;
-      font-size: 15px; margin-bottom: 18px;
-      outline: none; transition: border .2s;
-    }
-    input:focus { border-color: #3B8BD4; }
-    button {
-      width: 100%; padding: 12px;
-      background: #3B8BD4; color: #fff;
-      border: none; border-radius: 8px;
-      font-size: 15px; font-weight: 600;
-      cursor: pointer; transition: background .2s;
-    }
-    button:hover { background: #2a6fb5; }
-    .footer { text-align: center; margin-top: 20px; font-size: 13px; color: #888; }
-    .footer a { color: #3B8BD4; text-decoration: none; }
-    #error { color: #e24b4a; font-size: 13px; text-align: center; margin-top: 8px; }
-    #success { color: #1d9e75; font-size: 13px; text-align: center; margin-top: 8px; }
-  </style>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register - Register</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#f8f0ff",
+                        "outline": "#8e9099",
+                        "surface-dim": "#0b1326",
+                        "on-tertiary": "#362856",
+                        "error-container": "#93000a",
+                        "surface-bright": "#31394d",
+                        "surface-tint": "#b2c7f1",
+                        "on-primary": "#1b3053",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-primary-fixed-variant": "#33476b",
+                        "background": "#0b1326",
+                        "surface-container-low": "#131b2e",
+                        "primary-fixed": "#d7e3ff",
+                        "error": "#ffb4ab",
+                        "on-surface": "#dae2fd",
+                        "on-tertiary-fixed": "#211240",
+                        "on-error": "#690005",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary-container": "#eff2ff",
+                        "surface-variant": "#2d3449",
+                        "on-secondary-container": "#aeb5c5",
+                        "on-background": "#dae2fd",
+                        "secondary-fixed": "#dce2f3",
+                        "on-primary-fixed": "#021b3d",
+                        "on-surface-variant": "#c4c6cf",
+                        "on-secondary-fixed": "#151c27",
+                        "surface-container-lowest": "#060e20",
+                        "tertiary-container": "#766799",
+                        "inverse-primary": "#4b5f84",
+                        "surface": "#0b1326",
+                        "primary": "#b2c7f1",
+                        "on-secondary-fixed-variant": "#404754",
+                        "secondary-container": "#404754",
+                        "on-secondary": "#2a313d",
+                        "tertiary": "#d0bef6",
+                        "outline-variant": "#44474e",
+                        "primary-container": "#5b6f95",
+                        "tertiary-fixed-dim": "#d0bef6",
+                        "on-tertiary-fixed-variant": "#4d3f6e",
+                        "tertiary-fixed": "#eaddff",
+                        "secondary": "#c0c7d6",
+                        "on-error-container": "#ffdad6",
+                        "surface-container": "#171f33",
+                        "surface-container-high": "#222a3d",
+                        "inverse-on-surface": "#283044",
+                        "primary-fixed-dim": "#b2c7f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ghost-border {
+            box-shadow: inset 0 0 0 1px rgba(68, 71, 78, 0.2);
+        }
+        .ghost-border-focus:focus-within {
+            box-shadow: inset 0 0 0 2px rgba(208, 190, 246, 0.4);
+        }
+    </style>
 </head>
-<body>
-<div class="card">
-  <h2>🏙️ Civic Issue System</h2>
-  <p class="sub">Create an account to report issues</p>
-
-  <label for="name">Full Name</label>
-  <input type="text" id="name" placeholder="John Doe"/>
-
-  <label for="email">Email</label>
-  <input type="email" id="email" placeholder="you@example.com"/>
-
-  <label for="password">Password (min 6 chars)</label>
-  <input type="password" id="password" placeholder="Choose a password"/>
-
-  <button onclick="handleRegister()">Register</button>
-  <p id="error"></p>
-  <p id="success"></p>
-
-  <div class="footer">
-    Already have an account? <a href="/index.html">Login</a>
-  </div>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center p-4 antialiased">
+<!-- Login Container: Utilizing Surface Container Low for subtle layering without explicit borders -->
+<main class="w-full max-w-md bg-surface-container-low p-8 rounded-lg">
+<!-- Header / Brand -->
+<div class="mb-10 text-center">
+<h1 class="font-['Inter'] text-2xl font-black text-on-surface tracking-tight uppercase mb-2">Register</h1>
+<p class="text-secondary text-sm font-['Inter']">Civic Issue Reporting System</p>
 </div>
+<!-- Form: Using Surface Container Lowest for inputs to "set" them into the page -->
+<form class="space-y-6" onsubmit="event.preventDefault(); handleRegister();">
+<div class="space-y-2">
+<label class="block font-['Inter'] text-[0.6875rem] uppercase tracking-[0.05em] text-secondary font-semibold" for="name">Full Name</label>
+<div class="relative bg-surface-container-lowest rounded-DEFAULT ghost-border ghost-border-focus transition-shadow duration-200">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary text-[1.25rem]">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 bg-transparent border-none text-on-surface text-sm focus:ring-0 placeholder-secondary/50" id="name" name="name" placeholder="John Doe" required="" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block font-['Inter'] text-[0.6875rem] uppercase tracking-[0.05em] text-secondary font-semibold" for="email">Official Email Address</label>
+<div class="relative bg-surface-container-lowest rounded-DEFAULT ghost-border ghost-border-focus transition-shadow duration-200">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary text-[1.25rem]">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 bg-transparent border-none text-on-surface text-sm focus:ring-0 placeholder-secondary/50" id="email" name="email" placeholder="agent@municipal.gov" required="" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block font-['Inter'] text-[0.6875rem] uppercase tracking-[0.05em] text-secondary font-semibold" for="role">Select Role</label>
+<div class="relative bg-surface-container-lowest rounded-DEFAULT ghost-border ghost-border-focus transition-shadow duration-200">
+<select class="block w-full px-3 py-3 bg-transparent border-none text-on-surface text-sm focus:ring-0" id="role" name="role" required="">
+    <option value="ROLE_USER" class="bg-surface-container-low text-on-surface">Citizen</option>
+    <option value="ROLE_DEPT_ADMIN" class="bg-surface-container-low text-on-surface">Department Admin</option>
+    <option value="ROLE_MAIN_ADMIN" class="bg-surface-container-low text-on-surface">Main Admin</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block font-['Inter'] text-[0.6875rem] uppercase tracking-[0.05em] text-secondary font-semibold" for="password">Security Clearance Code</label>
+<div class="relative bg-surface-container-lowest rounded-DEFAULT ghost-border ghost-border-focus transition-shadow duration-200">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary text-[1.25rem]">lock</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 bg-transparent border-none text-on-surface text-sm focus:ring-0 placeholder-secondary/50" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+
+<div>
+<!-- Primary Button: Solid primary_container per guidelines, shifting to primary on hover -->
+<div class="text-xs text-center mb-4"><a class="font-medium text-primary hover:text-on-surface transition-colors font-['Inter']" href="/login.html">Already have an account? Login here.</a></div>
+<p id="error" class="text-error text-xs text-center mb-2 h-4"></p>
+<button class="w-full flex justify-center py-3 px-4 rounded-lg shadow-sm text-sm font-semibold text-on-primary-container bg-primary-container hover:bg-primary hover:text-on-primary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary" type="submit">
+                    Create Account
+                    <span class="material-symbols-outlined ml-2 text-[1.25rem]">person_add</span>
+</button>
+</div>
+</form>
+<!-- Footer / Metadata -->
+<div class="mt-8 pt-6 border-t border-surface-container-high text-center">
+<a href="/index.html" class="text-xs text-secondary hover:text-primary transition-colors block mb-2">← Back to Landing Page</a>
+<p class="text-[0.6875rem] text-secondary font-['Inter'] uppercase tracking-widest">
+                Authorized Personnel Only
+            </p>
+</div>
+</main>
 
 <script src="/js/auth.js"></script>
 <script>
+  if (typeof getToken === 'function' && getToken()) {
+     const r = getRole();
+     if (r === "ROLE_MAIN_ADMIN") window.location.href = "/admin/dashboard.html";
+     else if (r === "ROLE_DEPT_ADMIN") window.location.href = "/dept/dashboard.html";
+     else window.location.href = "/user/dashboard.html";
+  }
+
   async function handleRegister() {
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
     const errorEl = document.getElementById("error");
-    const successEl = document.getElementById("success");
+
     errorEl.textContent = "";
-    successEl.textContent = "";
 
-    if (!name || !email || !password) {
-      errorEl.textContent = "All fields are required.";
-      return;
-    }
-
-    if (password.length < 6) {
-      errorEl.textContent = "Password must be at least 6 characters.";
+    if (!name || !email || !password || !role) {
+      errorEl.textContent = "Please fill all fields.";
       return;
     }
 
     try {
       const data = await apiFetch("/api/auth/register", {
         method: "POST",
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ name, email, password, role })
       });
 
-      if (data?.message) {
-        successEl.textContent = data.message;
-        setTimeout(() => window.location.href = "/index.html", 2000);
+      if (data?.id || data?.email) {
+        alert("Registration successful! Please login.");
+        window.location.href = "/login.html";
       } else {
-        errorEl.textContent = data?.error || "Registration failed.";
+        errorEl.textContent = data?.message || "Registration failed.";
       }
     } catch (e) {
-      errorEl.textContent = "Server error. Please try again.";
+      errorEl.textContent = "Server error during registration.";
     }
   }
 </script>
