@@ -52,7 +52,9 @@ public class Complaint {
     private Department department;
 
     public enum Category {
-        POTHOLE, GARBAGE, STREETLIGHT, WATER_LEAKAGE, DRAINAGE
+        POTHOLE, ROAD_DAMAGE, GARBAGE, DRAINAGE, SEWAGE_BLOCKAGE, 
+        STREETLIGHT, ELECTRICAL_FAULT, WATER_LEAKAGE, 
+        WATER_SUPPLY_ISSUE, PUBLIC_PROPERTY_DAMAGE
     }
 
     public enum Status {

@@ -29,7 +29,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Public pages & static resources
                 .requestMatchers(
-                    "/", "/index.html", "/register.html",
+                    "/", "/index.html", "/login.html", "/register.html",
                     "/user/**", "/admin/**", "/dept/**",
                     "/js/**", "/css/**", "/images/**",
                     "/api/auth/**"

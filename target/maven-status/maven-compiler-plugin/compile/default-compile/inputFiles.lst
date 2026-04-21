@@ -8,6 +8,7 @@
 /home/prakyatshetty/Documents/javacivic/src/main/java/com/civic/javacivic/dto/RegisterRequest.java
 /home/prakyatshetty/Documents/javacivic/src/main/java/com/civic/javacivic/config/SecurityConfig.java
 /home/prakyatshetty/Documents/javacivic/src/main/java/com/civic/javacivic/model/User.java
+/home/prakyatshetty/Documents/javacivic/src/main/java/com/civic/javacivic/config/DataInitializer.java
 /home/prakyatshetty/Documents/javacivic/src/main/java/com/civic/javacivic/controller/AuthController.java
 /home/prakyatshetty/Documents/javacivic/src/main/java/com/civic/javacivic/repository/UserRepository.java
 /home/prakyatshetty/Documents/javacivic/src/main/java/com/civic/javacivic/repository/ComplaintRepository.java

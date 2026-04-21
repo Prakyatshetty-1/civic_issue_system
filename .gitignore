@@ -33,3 +33,4 @@ build/
 
 # Environment variables
 .env
+password.md

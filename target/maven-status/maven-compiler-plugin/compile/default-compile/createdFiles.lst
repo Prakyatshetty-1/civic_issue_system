@@ -1,5 +1,5 @@
-com/civic/javacivic/model/Complaint$Status.class
 com/civic/javacivic/controller/DepartmentController.class
+com/civic/javacivic/model/Complaint$Status.class
 com/civic/javacivic/repository/ComplaintRepository.class
 com/civic/javacivic/repository/DepartmentRepository.class
 com/civic/javacivic/security/JwtUtil.class
@@ -9,6 +9,7 @@ com/civic/javacivic/dto/ComplaintDTO.class
 com/civic/javacivic/model/Department$DepartmentName.class
 com/civic/javacivic/dto/AssignDTO.class
 com/civic/javacivic/controller/AuthController.class
+com/civic/javacivic/controller/UserController$1.class
 com/civic/javacivic/model/Complaint.class
 com/civic/javacivic/service/AuthService.class
 com/civic/javacivic/model/User$Role.class

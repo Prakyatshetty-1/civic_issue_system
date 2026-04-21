@@ -8,7 +8,7 @@ function getEmail()  { return localStorage.getItem("email"); }
 
 function logout() {
     localStorage.clear();
-    window.location.href = "/index.html";
+    window.location.href = "/login.html";
 }
 
 // ── Authenticated fetch wrapper ────────────────────────────
@@ -41,13 +41,13 @@ function requireAuth(expectedRole = null) {
     const role = getRole();
 
     if (!token) {
-        window.location.href = "/index.html";
+        window.location.href = "/login.html";
         return;
     }
 
     if (expectedRole && role !== expectedRole) {
         alert("Access denied");
-        window.location.href = "/index.html";
+        window.location.href = "/login.html";
     }
 }
 

@@ -1,110 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Civic Issue System — Login</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: sans-serif;
-      background: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-    h2 { text-align: center; margin-bottom: 8px; color: #1a1a1a; }
-    p.sub { text-align: center; color: #888; margin-bottom: 28px; font-size: 14px; }
-    label { display: block; font-size: 13px; color: #555; margin-bottom: 4px; }
-    input {
-      width: 100%; padding: 10px 14px;
-      border: 1px solid #ddd; border-radius: 8px;
-      font-size: 15px; margin-bottom: 18px;
-      outline: none; transition: border .2s;
-    }
-    input:focus { border-color: #3B8BD4; }
-    button {
-      width: 100%; padding: 12px;
-      background: #3B8BD4; color: #fff;
-      border: none; border-radius: 8px;
-      font-size: 15px; font-weight: 600;
-      cursor: pointer; transition: background .2s;
-    }
-    button:hover { background: #2a6fb5; }
-    .footer { text-align: center; margin-top: 20px; font-size: 13px; color: #888; }
-    .footer a { color: #3B8BD4; text-decoration: none; }
-    #error { color: #e24b4a; font-size: 13px; text-align: center; margin-top: 8px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect — Build a Better City Together</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3B8BD4;
+            --secondary: #2a6fb5;
+            --accent: #EF9F27;
+            --text: #2d3436;
+            --light: #f9f9f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-login {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(59, 139, 212, 0.3);
+        }
+        .btn-login:hover { transform: translateY(-2px); background: var(--secondary); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            position: relative;
+        }
+        .hero-content { max-width: 600px; }
+        .hero-content h1 { font-size: 64px; line-height: 1.1; margin-bottom: 25px; color: #1a1a1a; }
+        .hero-content p { font-size: 20px; color: #636e72; margin-bottom: 35px; }
+        .hero-btns { display: flex; gap: 20px; }
+        .btn-main {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 25px rgba(59, 139, 212, 0.3); }
+        .btn-primary:hover { background: var(--secondary); transform: scale(1.05); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: white; }
+
+        /* Features Section */
+        .features { padding: 100px 8%; background: white; text-align: center; }
+        .features h2 { font-size: 42px; margin-bottom: 60px; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        .feature-card {
+            padding: 50px 30px;
+            border-radius: 20px;
+            background: var(--light);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--primary); }
+        .feature-card i { font-size: 48px; color: var(--primary); margin-bottom: 25px; }
+        .feature-card h3 { font-size: 24px; margin-bottom: 15px; }
+        .feature-card p { color: #636e72; }
+
+        /* Stats */
+        .stats { background: var(--primary); padding: 80px 8%; color: white; display: flex; justify-content: space-around; text-align: center; }
+        .stat-item h4 { font-size: 48px; margin-bottom: 5px; }
+        .stat-item p { font-size: 18px; opacity: 0.9; }
+
+        /* Footer */
+        footer { padding: 60px 8%; background: #1a1a1a; color: white; text-align: center; }
+        .footer-logo { font-size: 28px; font-weight: 800; margin-bottom: 20px; color: var(--primary); }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .footer-links a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: white; }
+        .copyright { color: #555; font-size: 14px; }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 42px; }
+            .nav-links { display: none; }
+            .hero { text-align: center; justify-content: center; }
+            .hero-btns { justify-content: center; flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
-<div class="card">
-  <h2>🏙️ Civic Issue System</h2>
-  <p class="sub">Login to report or manage issues</p>
 
-  <label for="email">Email</label>
-  <input type="email" id="email" placeholder="you@example.com"/>
+    <header>
+        <div class="logo">
+            <i class="fas fa-city"></i> CivicConnect
+        </div>
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="/login.html" class="btn-login">Citizen Login</a>
+        </nav>
+    </header>
 
-  <label for="password">Password</label>
-  <input type="password" id="password" placeholder="Your password"/>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Building a better city, one report at a time.</h1>
+            <p>Report issues like potholes, streetlights, or garbage directly to your city officials and track the resolution in real-time.</p>
+            <div class="hero-btns">
+                <a href="/register.html" class="btn-main btn-primary">Report an Issue</a>
+                <a href="#features" class="btn-main btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
 
-  <button onclick="handleLogin()">Login</button>
-  <p id="error"></p>
+    <section class="features" id="features">
+        <h2>How it Works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-camera"></i>
+                <h3>Snap & Report</h3>
+                <p>Take a photo and describe the issue. Our system automatically routes it to the right department.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Auto-Assignment</h3>
+                <p>Issues are mapped and assigned to Sanitation, Water, Electricity or Public Works instantly.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-tasks"></i>
+                <h3>Track Status</h3>
+                <p>Stay updated. Get notifications as your complaint moves from Open to Resolved.</p>
+            </div>
+        </div>
+    </section>
 
-  <div class="footer">
-    Don't have an account? <a href="/register.html">Register</a>
-  </div>
-</div>
+    <section class="stats">
+        <div class="stat-item">
+            <h4>1500+</h4>
+            <p>Issues Resolved</p>
+        </div>
+        <div class="stat-item">
+            <h4>5</h4>
+            <p>Departments Active</p>
+        </div>
+        <div class="stat-item">
+            <h4>4.8/5</h4>
+            <p>User Satisfaction</p>
+        </div>
+    </section>
 
-<script src="/js/auth.js"></script>
-<script>
-  // Redirect if already logged in
-  if (getToken()) redirectByRole(getRole());
+    <footer>
+        <div class="footer-logo">CivicConnect</div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Support</a>
+        </div>
+        <p class="copyright">&copy; 2024 Civic Issue Reporting System. All rights reserved.</p>
+    </footer>
 
-  async function handleLogin() {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const errorEl = document.getElementById("error");
-    errorEl.textContent = "";
-
-    if (!email || !password) {
-      errorEl.textContent = "Please enter email and password.";
-      return;
-    }
-
-    try {
-      const data = await apiFetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password })
-      });
-
-      if (data?.token) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("role", data.role);
-        localStorage.setItem("name", data.name);
-        localStorage.setItem("email", data.email);
-        redirectByRole(data.role);
-      } else {
-        errorEl.textContent = data?.message || "Login failed. Check credentials.";
-      }
-    } catch (e) {
-      errorEl.textContent = "Server error. Please try again.";
-    }
-  }
-
-  function redirectByRole(role) {
-    if (role === "ROLE_MAIN_ADMIN") window.location.href = "/admin/dashboard.html";
-    else if (role === "ROLE_DEPT_ADMIN") window.location.href = "/dept/dashboard.html";
-    else window.location.href = "/user/dashboard.html";
-  }
-</script>
+    <script src="/js/auth.js"></script>
+    <script>
+        // Redirect if already logged in
+        if (getToken()) {
+            const role = getRole();
+            if (role === "ROLE_MAIN_ADMIN") window.location.href = "/admin/dashboard.html";
+            else if (role === "ROLE_DEPT_ADMIN") window.location.href = "/dept/dashboard.html";
+            else window.location.href = "/user/dashboard.html";
+        }
+    </script>
 </body>
 </html>

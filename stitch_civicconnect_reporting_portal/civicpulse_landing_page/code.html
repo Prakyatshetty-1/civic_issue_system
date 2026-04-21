@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CivicPulse - Civic Issue Reporting System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "surface": "#0b1326",
+                        "on-background": "#dae2fd",
+                        "surface-tint": "#b2c7f1",
+                        "surface-container-high": "#222a3d",
+                        "on-surface-variant": "#c4c6cf",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-primary-fixed": "#021b3d",
+                        "secondary-container": "#404754",
+                        "on-primary-fixed-variant": "#33476b",
+                        "primary-fixed-dim": "#b2c7f1",
+                        "surface-variant": "#2d3449",
+                        "on-tertiary": "#362856",
+                        "surface-container-low": "#131b2e",
+                        "on-secondary": "#2a313d",
+                        "on-secondary-fixed": "#151c27",
+                        "tertiary": "#d0bef6",
+                        "primary": "#b2c7f1",
+                        "inverse-on-surface": "#283044",
+                        "tertiary-container": "#766799",
+                        "on-secondary-container": "#aeb5c5",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "outline-variant": "#44474e",
+                        "on-primary": "#1b3053",
+                        "inverse-primary": "#4b5f84",
+                        "tertiary-fixed": "#eaddff",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#d7e3ff",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-tertiary-fixed": "#211240",
+                        "on-surface": "#dae2fd",
+                        "surface-container-lowest": "#060e20",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#5b6f95",
+                        "secondary": "#c0c7d6",
+                        "surface-container-highest": "#2d3449",
+                        "on-tertiary-fixed-variant": "#4d3f6e",
+                        "on-primary-container": "#eff2ff",
+                        "background": "#0b1326",
+                        "secondary-fixed": "#dce2f3",
+                        "outline": "#8e9099",
+                        "on-tertiary-container": "#f8f0ff",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary-fixed-dim": "#d0bef6",
+                        "surface-container": "#171f33",
+                        "surface-dim": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background-color: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(24px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #b2c7f1, #eff2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background: radial-gradient(circle at top right, rgba(91, 111, 149, 0.15) 0%, rgba(11, 19, 38, 1) 60%);
+        }
+    </style>
+</head>
+<body class="bg-surface-dim text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col font-body">
+<!-- Top Navigation (JSON) -->
+<nav class="bg-slate-950 dark:bg-[#0b1326] flex justify-between items-center w-full px-6 h-16 sticky top-0 z-50">
+<div class="flex items-center space-x-8">
+<span class="text-lg font-black tracking-tighter text-slate-100 uppercase font-headline">CIVIC MONOLITH</span>
+</div>
+<div class="flex items-center space-x-6">
+<div class="hidden md:flex space-x-6">
+<!-- Navigation Items would go here if defined for this specific page, keeping minimal for landing -->
+<a class="text-[#b2c7f1] font-bold font-label uppercase text-[10px] tracking-[0.05em] hover:bg-slate-800 transition-colors px-3 py-1.5 rounded scale-98 active:opacity-80 transition-all" href="#">Overview</a>
+<a class="text-slate-400 font-label uppercase text-[10px] tracking-[0.05em] hover:bg-slate-800 transition-colors px-3 py-1.5 rounded scale-98 active:opacity-80 transition-all" href="#">Features</a>
+<a class="text-slate-400 font-label uppercase text-[10px] tracking-[0.05em] hover:bg-slate-800 transition-colors px-3 py-1.5 rounded scale-98 active:opacity-80 transition-all" href="#">Testimonials</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-[#b2c7f1] hover:bg-slate-800 transition-colors p-2 rounded-full scale-98 active:opacity-80 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-[#b2c7f1] hover:bg-slate-800 transition-colors p-2 rounded-full scale-98 active:opacity-80 transition-all">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="text-[#b2c7f1] hover:bg-slate-800 transition-colors p-2 rounded-full scale-98 active:opacity-80 transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Administrator Profile Avatar" class="w-8 h-8 rounded-full border border-surface-container-highest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7ih2nzHITTIzASyEHng5tHTG7pMNbESEDmYUWUT0rsjD0AZGjMHmCcgbZbosnvAhjOdRovUYnMQ3OSse2E0CEKfsCWjim32ZQ8AyHJ8mDK8jzJVBVmqRUFEGgt2EEFzEgB7a6gfM19_YpALZVtEoLZAbtpd404KUb4_nHjkrMjJbqAJr-k_fm9kzn5UZtbh1jgKSNvEuR-0LL7EGRQ7_dVc878k9wRoOnWtV96OF1751F-eQdYlE0XHZQEf2oRLW6pyPGiVG2MztP"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="relative pt-32 pb-24 px-6 md:px-12 hero-bg overflow-hidden border-b border-outline-variant/10">
+<div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="z-10">
+<span class="text-primary font-label text-sm uppercase tracking-[0.1em] font-semibold mb-4 block">CivicPulse Platform</span>
+<h1 class="text-5xl md:text-7xl font-headline font-black tracking-tighter leading-tight mb-6 text-on-surface">
+                        Bridging the Gap Between <span class="gradient-text">Citizens</span> and City Hall.
+                    </h1>
+<p class="text-on-surface-variant text-lg md:text-xl font-body leading-relaxed mb-10 max-w-xl">
+                        A modern, data-driven oversight system designed to transform urban reporting from bureaucratic backlog into real-time civic action.
+                    </p>
+<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+<a class="bg-gradient-to-br from-primary-container to-primary text-on-primary-container px-8 py-4 rounded-md font-semibold text-center hover:opacity-90 transition-opacity" href="#">
+                            Request Demo
+                        </a>
+<a class="bg-transparent border border-outline-variant/15 text-on-surface px-8 py-4 rounded-md font-semibold text-center hover:border-outline-variant/40 transition-colors" href="#">
+                            Explore Platform
+                        </a>
+</div>
+</div>
+<!-- Abstract Hero Visual (Bento-style preview) -->
+<div class="relative z-10 glass-panel p-6 rounded-xl border border-surface-container-highest/50 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+<div class="absolute inset-0 bg-surface-container-highest/20 rounded-xl"></div>
+<div class="relative flex flex-col gap-4">
+<!-- Pseudo UI Header -->
+<div class="flex justify-between items-center mb-2">
+<div class="h-4 w-24 bg-surface-container-high rounded"></div>
+<div class="flex space-x-2">
+<div class="h-2 w-2 rounded-full bg-error"></div>
+<div class="h-2 w-2 rounded-full bg-tertiary"></div>
+</div>
+</div>
+<!-- Pseudo Stats Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<span class="text-on-surface-variant font-label text-[10px] uppercase tracking-wider block mb-1">Total Reports</span>
+<span class="text-2xl font-headline font-bold text-on-surface">1,492</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg">
+<span class="text-on-surface-variant font-label text-[10px] uppercase tracking-wider block mb-1">Resolution Rate</span>
+<span class="text-2xl font-headline font-bold text-primary">87.4%</span>
+</div>
+</div>
+<!-- Pseudo Incident Card -->
+<div class="bg-surface-container p-5 rounded-lg border-l-2 border-error">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="text-on-surface font-semibold text-sm">Pothole on 5th Ave</h4>
+<p class="text-on-surface-variant text-xs mt-1">Reported 2m ago via Mobile App</p>
+</div>
+<span class="bg-error/10 text-error text-[10px] px-2 py-1 rounded uppercase font-bold tracking-wider">High Priority</span>
+</div>
+</div>
+<!-- Pseudo Map Element -->
+<div class="h-32 bg-surface-container-low rounded-lg relative overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-container-highest text-6xl opacity-50" data-icon="map">map</span>
+<!-- Ping animation -->
+<div class="absolute h-4 w-4 bg-primary/50 rounded-full animate-ping top-1/2 left-1/3"></div>
+<div class="absolute h-2 w-2 bg-primary rounded-full top-1/2 left-1/3 translate-x-1 translate-y-1"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Decorative Elements -->
+<div class="absolute top-1/4 -right-64 w-96 h-96 bg-primary-container/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-0 left-1/4 w-64 h-64 bg-tertiary-container/5 rounded-full blur-[80px] pointer-events-none"></div>
+</section>
+<!-- Features Section (Bento Grid) -->
+<section class="py-24 px-6 md:px-12 bg-surface-dim relative">
+<div class="max-w-6xl mx-auto">
+<div class="mb-16">
+<h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tight text-on-surface mb-4">Architected for Action.</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl">CivicPulse streamlines the entire lifecycle of public infrastructure maintenance, from citizen report to municipal resolution.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(250px,auto)]">
+<!-- Feature 1: Easy Reporting (Span 2 cols) -->
+<div class="md:col-span-2 bg-surface-container-low rounded-xl p-8 border border-surface-container relative overflow-hidden group hover:border-outline-variant/30 transition-colors">
+<div class="relative z-10 w-full md:w-2/3">
+<div class="h-12 w-12 bg-surface-container-high rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="add_a_photo">add_a_photo</span>
+</div>
+<h3 class="text-xl font-headline font-semibold text-on-surface mb-3">Frictionless Reporting</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Citizens can seamlessly upload geotagged photos, drop map pins, and provide instant context without navigating bureaucratic portals.</p>
+<ul class="space-y-2">
+<li class="flex items-center text-sm text-on-secondary-container"><span class="material-symbols-outlined text-[16px] mr-2 text-primary" data-icon="check">check</span> One-click image upload</li>
+<li class="flex items-center text-sm text-on-secondary-container"><span class="material-symbols-outlined text-[16px] mr-2 text-primary" data-icon="check">check</span> Precise GPS coordinate snapping</li>
+</ul>
+</div>
+<!-- Decorative background -->
+<div class="absolute right-0 bottom-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none transform translate-x-1/4 translate-y-1/4">
+<span class="material-symbols-outlined text-[200px]" data-icon="location_on">location_on</span>
+</div>
+</div>
+<!-- Feature 2: Real-time Status -->
+<div class="bg-surface-container rounded-xl p-8 border border-surface-container-high hover:border-outline-variant/30 transition-colors relative overflow-hidden">
+<div class="h-12 w-12 bg-surface-container-high rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary" data-icon="sync">sync</span>
+</div>
+<h3 class="text-xl font-headline font-semibold text-on-surface mb-3">Live Status Sync</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">End the black box. Keep citizens informed with real-time updates as issues move from reported to resolved.</p>
+<!-- Pseudo timeline -->
+<div class="relative pl-4 border-l border-surface-container-highest space-y-4">
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-2 w-2 rounded-full bg-tertiary ring-4 ring-surface-container"></div>
+<p class="text-[10px] font-label uppercase text-on-surface-variant tracking-wider">In Progress</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-2 w-2 rounded-full bg-surface-container-highest ring-4 ring-surface-container"></div>
+<p class="text-[10px] font-label uppercase text-on-surface-variant/50 tracking-wider">Resolved</p>
+</div>
+</div>
+</div>
+<!-- Feature 3: Data-Driven Oversight (Span full width below) -->
+<div class="md:col-span-3 bg-gradient-to-br from-surface-container-low to-surface-container-highest rounded-xl p-8 border border-surface-container relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1 z-10">
+<div class="h-12 w-12 bg-surface-container-highest rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="analytics">analytics</span>
+</div>
+<h3 class="text-xl font-headline font-semibold text-on-surface mb-3">Data-Driven Oversight</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-lg">Equip city officials with actionable intelligence. Our comprehensive dashboard aggregates data to highlight systemic issues, optimize resource deployment, and track departmental performance metrics over time.</p>
+</div>
+<!-- Abstract Chart Graphic -->
+<div class="flex-1 w-full flex items-end h-32 space-x-2 opacity-80 z-10">
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[30%] hover:h-[40%] transition-all duration-300"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[50%] hover:h-[60%] transition-all duration-300"></div>
+<div class="w-1/6 bg-primary-container rounded-t-sm h-[80%] hover:h-[90%] transition-all duration-300 relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-label text-primary font-bold">PEAK</div>
+</div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[45%] hover:h-[55%] transition-all duration-300"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[20%] hover:h-[30%] transition-all duration-300"></div>
+<div class="w-1/6 bg-surface-variant rounded-t-sm h-[60%] hover:h-[70%] transition-all duration-300"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/5">
+<div class="max-w-5xl mx-auto">
+<div class="text-center mb-16">
+<span class="text-on-surface-variant font-label text-sm uppercase tracking-widest font-semibold mb-2 block">The Record</span>
+<h2 class="text-3xl font-headline font-bold tracking-tight text-on-surface">Trusted by Municipalities.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container p-8 rounded-lg shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)]">
+<span class="material-symbols-outlined text-4xl text-primary-container/30 mb-4 block" data-icon="format_quote">format_quote</span>
+<p class="text-on-surface text-lg leading-relaxed mb-6 font-medium">"CivicPulse transformed our dispatch center from a reactive call-center into a proactive data hub. The tonal UI is surprisingly easy on the eyes during 12-hour shifts."</p>
+<div class="flex items-center border-t border-surface-container-highest pt-4">
+<div class="h-10 w-10 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold text-sm mr-4">SM</div>
+<div>
+<h4 class="text-sm font-semibold text-on-surface">Sarah Miller</h4>
+<p class="text-xs text-on-surface-variant">Director of Public Works, District 04</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container p-8 rounded-lg shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)]">
+<span class="material-symbols-outlined text-4xl text-primary-container/30 mb-4 block" data-icon="format_quote">format_quote</span>
+<p class="text-on-surface text-lg leading-relaxed mb-6 font-medium">"The structural clarity of the reporting dashboard allows us to identify high-density incident zones instantly. It's an indispensable tool for urban management."</p>
+<div class="flex items-center border-t border-surface-container-highest pt-4">
+<div class="h-10 w-10 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold text-sm mr-4">JD</div>
+<div>
+<h4 class="text-sm font-semibold text-on-surface">James Donovan</h4>
+<p class="text-xs text-on-surface-variant">City Manager, Metro Area</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (JSON) -->
+<footer class="bg-slate-950 dark:bg-[#0b1326] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center mt-auto border-t border-surface-container-low/50">
+<div class="mb-6 md:mb-0">
+<span class="text-slate-300 font-bold font-headline">CIVIC MONOLITH</span>
+<p class="text-slate-500 font-['Inter'] text-[10px] tracking-[0.05em] uppercase mt-2">© 2024 THE CIVIC MONOLITH. AN EDITORIAL RECORD OF PUBLIC SERVICE.</p>
+</div>
+<div class="flex space-x-6">
+<a class="text-slate-500 font-['Inter'] text-[10px] tracking-[0.05em] uppercase hover:text-blue-400 transition-colors" href="#">Transparency</a>
+<a class="text-slate-500 font-['Inter'] text-[10px] tracking-[0.05em] uppercase hover:text-blue-400 transition-colors" href="#">Privacy</a>
+<a class="text-slate-500 font-['Inter'] text-[10px] tracking-[0.05em] uppercase hover:text-blue-400 transition-colors" href="#">Accessibility</a>
+<a class="text-slate-500 font-['Inter'] text-[10px] tracking-[0.05em] uppercase hover:text-blue-400 transition-colors" href="#">Infrastructure</a>
+</div>
+</footer>
+</body></html>

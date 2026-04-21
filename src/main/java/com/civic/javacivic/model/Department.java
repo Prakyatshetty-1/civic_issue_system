@@ -19,6 +19,6 @@ public class Department {
     private DepartmentName name;
 
     public enum DepartmentName {
-        SANITATION, ELECTRICITY, WATER
+        SANITATION, WATER, ELECTRICITY, ROADS_INFRASTRUCTURE, PUBLIC_WORKS
     }
 }

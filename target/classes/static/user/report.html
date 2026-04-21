@@ -50,11 +50,26 @@
 
     <label for="category">Category</label>
     <select id="category">
-      <option value="POTHOLE">Pothole</option>
-      <option value="GARBAGE">Garbage</option>
-      <option value="STREETLIGHT">Streetlight</option>
-      <option value="WATER_LEAKAGE">Water Leakage</option>
-      <option value="DRAINAGE">Drainage</option>
+      <optgroup label="Roads & Infrastructure">
+        <option value="POTHOLE">Pothole</option>
+        <option value="ROAD_DAMAGE">Road Damage</option>
+      </optgroup>
+      <optgroup label="Sanitation">
+        <option value="GARBAGE">Garbage</option>
+        <option value="DRAINAGE">Drainage</option>
+        <option value="SEWAGE_BLOCKAGE">Sewage Blockage</option>
+      </optgroup>
+      <optgroup label="Electricity">
+        <option value="STREETLIGHT">Streetlight</option>
+        <option value="ELECTRICAL_FAULT">Electrical Fault</option>
+      </optgroup>
+      <optgroup label="Water">
+        <option value="WATER_LEAKAGE">Water Leakage</option>
+        <option value="WATER_SUPPLY_ISSUE">Water Supply Issue</option>
+      </optgroup>
+      <optgroup label="Public Works">
+        <option value="PUBLIC_PROPERTY_DAMAGE">Public Property Damage</option>
+      </optgroup>
     </select>
 
     <label for="address">Location Address</label>
