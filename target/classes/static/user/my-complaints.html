@@ -278,7 +278,7 @@
     try {
       const data = await apiFetch("/api/user/complaints");
       if (!data || data.length === 0) {
-        listEl.innerHTML = '<div class="text-center py-10 text-on-surface-variant">No complaints submitted yet.</div>';
+        listEl.innerHTML = '<div class="text-center py-10 text-on-surface-variant text-body-md font-medium">No complaints reported yet. Click "New Report" to get started.</div>';
         return;
       }
 
@@ -288,24 +288,44 @@
                 #RPT-${c.id}
             </div>
             <div class="col-span-3 flex flex-col gap-1 pr-4">
-                <span class="text-body-md font-medium text-on-surface">${c.category}</span>
-                <span class="text-label-sm text-on-surface-variant line-clamp-2">${c.description}</span>
-                <span class="text-xs text-secondary mt-1">📍 ${c.address}</span>
+                <div class="flex items-center gap-2">
+                    <span class="text-body-md font-medium text-on-surface uppercase tracking-wide">${c.category.replace('_', ' ')}</span>
+                    ${c.imageUrl ? `<a href="${c.imageUrl}" target="_blank" class="material-symbols-outlined text-sm text-primary hover:text-primary-fixed-dim">image</a>` : ''}
+                </div>
+                <span class="text-label-sm text-on-surface-variant line-clamp-1">${c.description}</span>
+                <span class="text-[0.7rem] text-secondary mt-0.5 flex items-center gap-1"><span class="material-symbols-outlined text-[0.85rem]">location_on</span> ${c.address}</span>
             </div>
             <div class="col-span-2 flex items-center gap-2">
                 <div class="w-1.5 h-1.5 rounded-full ${getStatusBadgeClass(c.status)}"></div>
-                <span class="text-body-md ${getStatusTextClass(c.status)}">${c.status}</span>
+                <span class="text-body-md ${getStatusTextClass(c.status)} font-medium">${c.status}</span>
             </div>
             <div class="col-span-2 text-body-md text-on-surface-variant">
-                ${new Date(c.createdAt).toLocaleDateString()}
+                ${new Date(c.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
             </div>
-            <div class="col-span-3 text-body-md text-on-surface-variant flex flex-col">
-                ${c.adminComment ? `<span class="text-xs text-primary font-medium">Admin Update</span><span class="text-xs text-on-surface-variant truncate">${c.adminComment}</span>` : '<span class="text-xs text-outline">No updates</span>'}
+            <div class="col-span-2 text-body-md text-on-surface-variant flex flex-col">
+                <span class="text-[0.65rem] text-outline uppercase tracking-wider font-bold">Department</span>
+                <span class="font-medium">${c.department ? c.department.name.replace('_', ' ') : 'PENDING'}</span>
             </div>
+            <div class="col-span-1 text-right">
+                <button class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-highest transition-colors text-outline hover:text-primary" title="View Details">
+                    <span class="material-symbols-outlined text-[1.25rem]">visibility</span>
+                </button>
+            </div>
+            ${c.adminComment ? `
+            <div class="col-span-12 mt-2 pt-2 border-t border-white/5">
+                <div class="bg-primary-container/10 rounded-md p-3 flex gap-3 items-start">
+                    <span class="material-symbols-outlined text-primary text-[1.15rem]">comment</span>
+                    <div>
+                        <p class="text-[0.65rem] text-primary uppercase tracking-widest font-bold mb-0.5">Official Update</p>
+                        <p class="text-body-md text-on-surface-variant">${c.adminComment}</p>
+                    </div>
+                </div>
+            </div>` : ''}
         </div>
       `).join("");
     } catch (e) {
-      listEl.innerHTML = '<div class="text-center py-10 text-error">Error loading complaints.</div>';
+      console.error("Error loading complaints:", e);
+      listEl.innerHTML = '<div class="text-center py-10 text-error font-medium">Failed to load complaints. Please check your connection.</div>';
     }
   }
 

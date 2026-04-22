@@ -1,6 +1,7 @@
-com/civic/javacivic/controller/DepartmentController.class
 com/civic/javacivic/model/Complaint$Status.class
+com/civic/javacivic/controller/DepartmentController.class
 com/civic/javacivic/repository/ComplaintRepository.class
+com/civic/javacivic/config/DataInitializer.class
 com/civic/javacivic/repository/DepartmentRepository.class
 com/civic/javacivic/security/JwtUtil.class
 com/civic/javacivic/repository/UserRepository.class
@@ -20,6 +21,5 @@ com/civic/javacivic/model/User.class
 com/civic/javacivic/security/JwtFilter.class
 com/civic/javacivic/model/Department.class
 com/civic/javacivic/controller/AdminController.class
-com/civic/javacivic/config/SecurityConfig.class
 com/civic/javacivic/dto/RegisterRequest.class
 com/civic/javacivic/JavacivicApplication.class

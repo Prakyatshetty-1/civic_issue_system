@@ -94,11 +94,11 @@
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/complaints.html" class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] rounded-r-md active:scale-95 transition-transform">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/complaints.html" class="flex items-center gap-3 px-4 py-3  text-slate-400 hover:text-slate-200 hover:bg-[#171f33] border-transparent rounded-r-md active:scale-95 transition-transform">
 <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-<span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">All Complaints</span>
+<span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">Notifications</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/notifications.html">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/notifications.html" class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] rounded-r-md active:scale-95 transition-transform">
 <span class="material-symbols-outlined" data-icon="notifications">notifications_active</span>
 <span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">Notifications</span>
 </a>
@@ -137,7 +137,7 @@
 <div class="max-w-7xl mx-auto space-y-8">
 <!-- Page Header -->
 <div class="flex flex-col gap-2">
-<h2 class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none">All Complaints</h2>
+<h2 class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none">Notifications</h2>
 <p class="text-sm font-['Inter'] text-on-surface-variant max-w-2xl">City-wide incident telemetry and departmental coordination matrix.</p>
 </div>
 <!-- Metrics Grid -->
@@ -285,9 +285,10 @@
   async function loadAllComplaints() {
     const listEl = document.getElementById("complaints-list");
     try {
-      const data = await apiFetch("/api/admin/complaints");
+      const allData = await apiFetch("/api/admin/complaints");
+      const data = allData ? allData.filter(c => c.status === "PENDING_RESOLUTION") : [];
       if (!data || data.length === 0) {
-        listEl.innerHTML = '<div class="text-center py-10 text-on-surface-variant">No complaints reported yet.</div>';
+        listEl.innerHTML = '<div class="text-center py-10 text-on-surface-variant">No pending notifications from departments.</div>';
         return;
       }
 
@@ -300,15 +301,8 @@
                 <p class="text-xs text-secondary mt-1">📍 ${c.address} | By: ${c.user.name}</p>
             </div>
             <div class="col-span-2 text-sm text-on-surface-variant flex flex-col gap-1">
-                ${c.status === 'OPEN' ? `
-                    <select id="dept-${c.id}" class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface px-2 py-1 rounded w-full">
-                        <option value="SANITATION">Sanitation</option>
-                        <option value="ELECTRICITY">Electricity</option>
-                        <option value="WATER">Water</option>
-                    </select>
-                ` : `
-                    <span class="text-primary font-medium">${c.department ? c.department.name : "N/A"}</span>
-                `}
+                <span class="text-primary font-medium">${c.department ? c.department.name : "N/A"}</span>
+                ${c.adminComment ? `<span class="text-xs text-slate-400 mt-1">Note: ${c.adminComment}</span>` : ''}
             </div>
             <div class="col-span-2">
                 <div class="flex items-center gap-2 text-sm ${getStatusTextClass(c.status)}">
@@ -316,17 +310,32 @@
                 </div>
             </div>
             <div class="col-span-2 flex flex-col items-end gap-2">
-                ${c.status === 'OPEN' ? `
-                    <input id="comment-${c.id}" type="text" placeholder="Comment..." class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface px-2 py-1 rounded w-full" />
-                    <button onclick="assignComplaint(${c.id})" class="bg-primary-container text-on-primary-container text-xs px-3 py-1 rounded hover:opacity-90">Assign</button>
-                ` : `
-                    <span class="text-xs text-on-surface-variant max-w-[120px] truncate" title="${c.adminComment}">${c.adminComment || "No comment"}</span>
-                `}
+                <button onclick="approveResolution(${c.id})" class="bg-primary-container text-on-primary-container text-xs px-3 py-1.5 rounded hover:opacity-90 font-medium transition-opacity flex items-center gap-1" title="Approve and Resolve">
+                    <span class="material-symbols-outlined text-sm">check_circle</span> Approve
+                </button>
             </div>
         </div>
       `).join("");
     } catch (e) {
-      listEl.innerHTML = '<div class="text-center py-10 text-error">Error loading all complaints.</div>';
+      listEl.innerHTML = '<div class="text-center py-10 text-error">Error loading notifications.</div>';
+    }
+  }
+
+  
+  async function approveResolution(id) {
+    try {
+      const data = await apiFetch(`/api/admin/update-status/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ status: 'RESOLVED' })
+      });
+
+      if (data?.message) {
+        loadAllComplaints();
+      } else {
+        alert(data?.error || "Approval failed.");
+      }
+    } catch (e) {
+      alert("Server error.");
     }
   }
 

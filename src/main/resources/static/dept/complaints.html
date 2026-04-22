@@ -102,18 +102,18 @@
                 </a>
 </li>
 <li>
-<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/complaints.html">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/complaints.html" class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase">
 <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-                    Reports
+                    Assigned Complaints
                 </a>
 </li>
 <li>
-<a class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/complaints.html">
-<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
-                    My Issues
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/in-progress.html">
+<span class="material-symbols-outlined" data-icon="engineering">engineering</span>
+                    In Progress
                 </a>
 </li>
-<li>
+<li class="mt-auto">
 <a class="flex items-center gap-3 px-4 py-3 rounded-md text-error hover:text-error/80 hover:bg-[#171f33] transition-all duration-200 active:scale-95 cursor-pointer font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" onclick="logout()">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
                     Logout
@@ -237,7 +237,7 @@
 <th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Issue Description</th>
 <th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Location</th>
 <th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-48">Status Update</th>
-<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 text-right w-32">Priority</th>
+<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 text-right w-64">Action</th>
 </tr>
 </thead>
 
@@ -270,9 +270,11 @@
   async function loadDeptComplaints() {
     const listEl = document.getElementById("complaints-list");
     try {
-      const data = await apiFetch("/api/department/complaints");
-      if (!data || data.length === 0) {
-        listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No complaints assigned to your department yet.</td></tr>';
+      const allData = await apiFetch("/api/department/complaints");
+      const data = allData ? allData.filter(c => c.status === 'ASSIGNED') : [];
+
+      if (data.length === 0) {
+        listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No new complaints assigned.</td></tr>';
         return;
       }
 
@@ -294,22 +296,14 @@
                 </div>
             </td>
             <td class="px-6 py-5 align-top">
-                <div class="relative w-full mb-2">
-                    <select id="status-${c.id}" class="appearance-none w-full bg-surface-container border border-outline-variant/30 text-slate-200 text-xs rounded-md py-1.5 pl-3 pr-8 focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-colors">
-                        <option value="ASSIGNED" ${c.status === 'ASSIGNED' ? 'selected' : ''}>Assigned</option>
-                        <option value="IN_PROGRESS" ${c.status === 'IN_PROGRESS' ? 'selected' : ''}>In Progress</option>
-                        <option value="RESOLVED" ${c.status === 'RESOLVED' ? 'selected' : ''}>Resolved</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
-                        <span class="material-symbols-outlined text-sm">expand_more</span>
-                    </div>
+                <div class="flex items-center gap-2 text-sm text-orange-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span> Assigned
                 </div>
             </td>
             <td class="px-6 py-5 align-top text-right">
-                <div class="flex flex-col gap-2 items-end">
-                    <input id="comment-${c.id}" type="text" value="${c.adminComment || ''}" placeholder="Add an update..." class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface px-2 py-1.5 rounded w-full max-w-[200px]" />
-                    <button onclick="updateStatus(${c.id})" class="bg-primary-container text-on-primary-container text-xs px-3 py-1.5 rounded hover:opacity-90 font-medium transition-opacity">Update</button>
-                </div>
+                <button onclick="startWork(${c.id})" class="bg-tertiary-container/20 text-tertiary border border-tertiary/20 text-xs px-3 py-1.5 rounded hover:bg-tertiary-container hover:text-on-tertiary-container font-medium transition-colors flex items-center justify-end gap-1 ml-auto" title="Mark as In Progress">
+                    <span class="material-symbols-outlined text-sm">check_circle</span> Start Work
+                </button>
             </td>
         </tr>
       `).join("");
@@ -318,18 +312,14 @@
     }
   }
 
-  async function updateStatus(id) {
-    const status = document.getElementById(`status-${id}`).value;
-    const adminComment = document.getElementById(`comment-${id}`).value.trim();
-
+  async function startWork(id) {
     try {
       const data = await apiFetch(`/api/department/update-status/${id}`, {
         method: "PUT",
-        body: JSON.stringify({ status, adminComment })
+        body: JSON.stringify({ status: 'IN_PROGRESS' })
       });
 
       if (data?.message) {
-        alert(data.message);
         loadDeptComplaints();
       } else {
         alert(data?.error || "Update failed.");

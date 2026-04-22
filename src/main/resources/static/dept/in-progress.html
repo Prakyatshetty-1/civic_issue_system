@@ -3,7 +3,7 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Public Works - Civic Monolith</title>
+<title>Dept Complaints - Civic Monolith</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -96,25 +96,25 @@
 </div>
 <ul class="flex flex-col gap-2 flex-1">
 <li>
-<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/dashboard.html">
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
                     Dashboard
                 </a>
 </li>
 <li>
-<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/complaints.html">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/complaints.html" class="flex items-center gap-3 px-4 py-3 rounded-md  text-slate-400 hover:text-slate-200 hover:bg-[#171f33] border-transparent active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase">
 <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
                     Assigned Complaints
                 </a>
 </li>
 <li>
-<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/in-progress.html">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/in-progress.html" class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase">
 <span class="material-symbols-outlined" data-icon="engineering">engineering</span>
                     In Progress
                 </a>
 </li>
 <li class="mt-auto">
-<a class="flex items-center gap-3 px-4 py-3 rounded-md text-error hover:text-error/80 hover:bg-[#171f33] transition-all duration-200 active:scale-95 cursor-pointer font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" onclick="logout()">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-tertiary hover:text-tertiary/80 hover:bg-[#171f33] transition-all duration-200 active:scale-95 cursor-pointer font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" onclick="logout()">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
                     Logout
                 </a>
@@ -148,8 +148,8 @@
 <main class="flex-1 w-full md:ml-64 pt-24 px-4 md:px-8 pb-12">
 <!-- Header Section -->
 <div class="mb-8">
-<h2 class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium mb-2">Department View</h2>
-<h1 class="text-[2.75rem] font-bold tracking-tight text-on-surface leading-none mb-4">Public Works</h1>
+<h2 class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium mb-2">In Progress Complaints</h2>
+<h1 class="text-[2.75rem] font-bold tracking-tight text-on-surface leading-none mb-4">Dept Complaints</h1>
 </div>
 <!-- Stats Bento Grid -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -164,9 +164,10 @@
 <span class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium">Assigned Issues</span>
 </div>
 <div>
-<span id="assigned-count" class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">-</span>
+<span class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">142</span>
 <div class="flex items-center gap-2 mt-2">
-<span class="text-sm text-slate-400">Awaiting action</span>
+<span class="material-symbols-outlined text-tertiary text-sm">trending_up</span>
+<span class="text-sm text-slate-400">+12 this week</span>
 </div>
 </div>
 </div>
@@ -187,7 +188,7 @@
 <span class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium">In Progress</span>
 </div>
 <div>
-<span id="inprogress-count" class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">-</span>
+<span class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">58</span>
 <div class="flex items-center gap-2 mt-2">
 <span class="text-sm text-slate-400">Active deployments</span>
 </div>
@@ -204,42 +205,29 @@
 <span class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium">Resolved (7D)</span>
 </div>
 <div>
-<span id="resolved-count" class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">-</span>
+<span class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">314</span>
 <div class="flex items-center gap-2 mt-2">
-<span class="text-sm text-slate-400">This week</span>
+<span class="material-symbols-outlined text-secondary text-sm">trending_up</span>
+<span class="text-sm text-slate-400">+5% vs last period</span>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-<!-- Assigned Complaints Section -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden mb-8">
-<div class="p-6 border-b border-outline-variant/15 flex items-center justify-between bg-surface-container-low">
-<h3 class="text-[1.375rem] font-medium text-on-surface tracking-tight">Assigned Complaints (Awaiting Action)</h3>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low/50">
-<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-16">ID</th>
-<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Issue Description</th>
-<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Location</th>
-<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-48">Status</th>
-<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 text-right w-64">Action</th>
-</tr>
-</thead>
-<tbody id="assigned-list" class="text-sm font-['Inter'] text-slate-300">
-<tr><td colspan="5" class="text-center py-8 text-slate-500">Loading assigned complaints...</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<!-- In Progress Complaints Section -->
+<!-- Data Dense Table Section -->
 <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden">
 <div class="p-6 border-b border-outline-variant/15 flex items-center justify-between bg-surface-container-low">
-<h3 class="text-[1.375rem] font-medium text-on-surface tracking-tight">In Progress (Ready for Review)</h3>
+<h3 class="text-[1.375rem] font-medium text-on-surface tracking-tight">Active Work Orders</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-sm font-medium text-on-surface bg-transparent border border-outline-variant/15 hover:border-outline-variant/40 rounded-md transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+<button class="px-4 py-2 text-sm font-medium text-on-primary-container bg-gradient-to-br from-primary-container to-primary rounded-md transition-all shadow-[0_4px_12px_rgba(91,111,149,0.2)] flex items-center gap-2 hover:shadow-[0_4px_16px_rgba(91,111,149,0.4)]">
+<span class="material-symbols-outlined text-sm">add</span>
+                        New Task
+                    </button>
+</div>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
@@ -248,14 +236,27 @@
 <th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-16">ID</th>
 <th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Issue Description</th>
 <th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Location</th>
-<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-48">Status</th>
+<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-48">Status Update</th>
 <th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 text-right w-64">Action</th>
 </tr>
 </thead>
-<tbody id="inprogress-list" class="text-sm font-['Inter'] text-slate-300">
-<tr><td colspan="5" class="text-center py-8 text-slate-500">Loading in progress complaints...</td></tr>
+
+<tbody id="complaints-list" class="text-sm font-['Inter'] text-slate-300">
+    <tr><td colspan="5" class="text-center py-8 text-slate-500">Loading assigned complaints...</td></tr>
 </tbody>
+
 </table>
+</div>
+<!-- Pagination / Footer -->
+<div class="p-4 border-t border-outline-variant/15 bg-surface-container-low/50 flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium tracking-wide">SHOWING 1-3 OF 142</span>
+<div class="flex gap-1">
+<button class="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1 text-slate-400 hover:text-slate-200">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
 </div>
 </div>
 </div>
@@ -266,118 +267,51 @@
   requireAuth("ROLE_DEPT_ADMIN");
   document.getElementById("user-name").textContent = getName() || "Dept Admin";
 
-  async function loadDashboard() {
+  async function loadDeptComplaints() {
+    const listEl = document.getElementById("complaints-list");
     try {
       const allData = await apiFetch("/api/department/complaints");
-      const assigned = allData ? allData.filter(c => c.status === 'ASSIGNED') : [];
-      const inProgress = allData ? allData.filter(c => c.status === 'IN_PROGRESS') : [];
-      const resolved = allData ? allData.filter(c => c.status === 'RESOLVED') : [];
+      const data = allData ? allData.filter(c => c.status === 'IN_PROGRESS') : [];
 
-      // Update counts
-      document.getElementById("assigned-count").textContent = assigned.length;
-      document.getElementById("inprogress-count").textContent = inProgress.length;
-      document.getElementById("resolved-count").textContent = resolved.length;
-
-      // Render assigned list
-      renderAssignedList(assigned);
-      renderInProgressList(inProgress);
-    } catch (e) {
-      console.error("Error loading dashboard:", e);
-    }
-  }
-
-  function renderAssignedList(data) {
-    const listEl = document.getElementById("assigned-list");
-    if (data.length === 0) {
-      listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No assigned complaints awaiting action.</td></tr>';
-      return;
-    }
-
-    listEl.innerHTML = data.map(c => `
-      <tr class="hover:bg-surface-container-low transition-colors group border-b border-outline-variant/10">
-        <td class="px-6 py-5 align-top">
-          <span class="font-mono text-xs text-slate-500">#CV-${c.id}</span>
-          <div class="text-xs text-slate-500 mt-2">${new Date(c.createdAt).toLocaleDateString()}</div>
-        </td>
-        <td class="px-6 py-5 align-top">
-          <div class="font-medium text-on-surface mb-1">${c.category}</div>
-          <div class="text-slate-400 text-xs line-clamp-2">${c.description}</div>
-          <div class="text-slate-500 text-xs mt-1">User: ${c.user.name}</div>
-        </td>
-        <td class="px-6 py-5 align-top">
-          <div class="flex items-center gap-2 text-slate-300 text-xs">
-            <span class="material-symbols-outlined text-sm text-slate-500">location_on</span>
-            ${c.address}
-          </div>
-        </td>
-        <td class="px-6 py-5 align-top">
-          <div class="flex items-center gap-2 text-sm text-orange-400">
-            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span> Assigned
-          </div>
-        </td>
-        <td class="px-6 py-5 align-top text-right">
-          <button onclick="startWork(${c.id})" class="bg-tertiary-container/20 text-tertiary border border-tertiary/20 text-xs px-3 py-1.5 rounded hover:bg-tertiary-container hover:text-on-tertiary-container font-medium transition-colors flex items-center gap-1 ml-auto" title="Mark as In Progress">
-            <span class="material-symbols-outlined text-sm">check_circle</span> Start Work
-          </button>
-        </td>
-      </tr>
-    `).join("");
-  }
-
-  function renderInProgressList(data) {
-    const listEl = document.getElementById("inprogress-list");
-    if (data.length === 0) {
-      listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No complaints currently in progress.</td></tr>';
-      return;
-    }
-
-    listEl.innerHTML = data.map(c => `
-      <tr class="hover:bg-surface-container-low transition-colors group border-b border-outline-variant/10">
-        <td class="px-6 py-5 align-top">
-          <span class="font-mono text-xs text-slate-500">#CV-${c.id}</span>
-          <div class="text-xs text-slate-500 mt-2">${new Date(c.createdAt).toLocaleDateString()}</div>
-        </td>
-        <td class="px-6 py-5 align-top">
-          <div class="font-medium text-on-surface mb-1">${c.category}</div>
-          <div class="text-slate-400 text-xs line-clamp-2">${c.description}</div>
-          <div class="text-slate-500 text-xs mt-1">User: ${c.user.name}</div>
-        </td>
-        <td class="px-6 py-5 align-top">
-          <div class="flex items-center gap-2 text-slate-300 text-xs">
-            <span class="material-symbols-outlined text-sm text-slate-500">location_on</span>
-            ${c.address}
-          </div>
-        </td>
-        <td class="px-6 py-5 align-top">
-          <div class="flex items-center gap-2 text-sm text-tertiary">
-            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> In Progress
-          </div>
-        </td>
-        <td class="px-6 py-5 align-top text-right">
-          <div class="flex flex-col gap-2 items-end">
-            <input id="comment-${c.id}" type="text" placeholder="Resolution note..." class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface px-2 py-1.5 rounded w-full max-w-[200px]" />
-            <button onclick="markCompleted(${c.id})" class="bg-primary-container text-on-primary-container text-xs px-3 py-1.5 rounded hover:opacity-90 font-medium transition-opacity flex items-center gap-1" title="Mark as Completed">
-              <span class="material-symbols-outlined text-sm">check_circle</span> Complete
-            </button>
-          </div>
-        </td>
-      </tr>
-    `).join("");
-  }
-
-  async function startWork(id) {
-    try {
-      const data = await apiFetch(`/api/department/update-status/${id}`, {
-        method: "PUT",
-        body: JSON.stringify({ status: 'IN_PROGRESS' })
-      });
-      if (data?.message) {
-        loadDashboard();
-      } else {
-        alert(data?.error || "Update failed.");
+      if (data.length === 0) {
+        listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No tasks currently in progress.</td></tr>';
+        return;
       }
+
+      listEl.innerHTML = data.map(c => `
+        <tr class="hover:bg-surface-container-low transition-colors group border-b border-outline-variant/10">
+            <td class="px-6 py-5 align-top">
+                <span class="font-mono text-xs text-slate-500">#CV-${c.id}</span>
+                <div class="text-xs text-slate-500 mt-2">${new Date(c.createdAt).toLocaleDateString()}</div>
+            </td>
+            <td class="px-6 py-5 align-top">
+                <div class="font-medium text-on-surface mb-1">${c.category}</div>
+                <div class="text-slate-400 text-xs line-clamp-2">${c.description}</div>
+                <div class="text-slate-500 text-xs mt-1">User: ${c.user.name}</div>
+            </td>
+            <td class="px-6 py-5 align-top">
+                <div class="flex items-center gap-2 text-slate-300 text-xs">
+                    <span class="material-symbols-outlined text-sm text-slate-500">location_on</span>
+                    ${c.address}
+                </div>
+            </td>
+            <td class="px-6 py-5 align-top">
+                <div class="flex items-center gap-2 text-sm text-tertiary">
+                    <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> In Progress
+                </div>
+            </td>
+            <td class="px-6 py-5 align-top text-right">
+                <div class="flex flex-col gap-2 items-end">
+                    <input id="comment-${c.id}" type="text" placeholder="Resolution note..." class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface px-2 py-1.5 rounded w-full max-w-[200px]" />
+                    <button onclick="markCompleted(${c.id})" class="bg-primary-container text-on-primary-container text-xs px-3 py-1.5 rounded hover:opacity-90 font-medium transition-opacity flex items-center gap-1" title="Mark as Completed">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Complete
+                    </button>
+                </div>
+            </td>
+        </tr>
+      `).join("");
     } catch (e) {
-      alert("Server error.");
+      listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-error">Error loading department complaints.</td></tr>';
     }
   }
 
@@ -388,8 +322,9 @@
         method: "PUT",
         body: JSON.stringify({ status: 'PENDING_RESOLUTION', adminComment: adminComment })
       });
+
       if (data?.message) {
-        loadDashboard();
+        loadDeptComplaints();
       } else {
         alert(data?.error || "Update failed.");
       }
@@ -398,7 +333,7 @@
     }
   }
 
-  loadDashboard();
+  loadDeptComplaints();
 </script>
 </body>
 </html>

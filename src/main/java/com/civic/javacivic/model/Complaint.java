@@ -1,5 +1,6 @@
 package com.civic.javacivic.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -45,10 +46,12 @@ public class Complaint {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "password"})
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Department department;
 
     public enum Category {
@@ -58,6 +61,6 @@ public class Complaint {
     }
 
     public enum Status {
-        OPEN, ASSIGNED, IN_PROGRESS, RESOLVED
+        OPEN, ASSIGNED, IN_PROGRESS, PENDING_RESOLUTION, RESOLVED
     }
 }

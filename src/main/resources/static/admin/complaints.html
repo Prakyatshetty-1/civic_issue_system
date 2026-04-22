@@ -90,18 +90,17 @@
 <p class="font-['Inter'] text-[0.6875rem] uppercase tracking-[0.05em] text-[#5B6F95]">Admin Monolith</p>
 </div>
 <div class="flex-1 space-y-2">
-<!-- Active: Dashboard -->
-<a class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] rounded-r-md active:scale-95 transition-transform" href="/admin/dashboard.html">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/dashboard.html">
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/complaints.html">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/complaints.html" class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] rounded-r-md active:scale-95 transition-transform">
 <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
-<span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">Reports</span>
+<span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">All Complaints</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/complaints.html">
-<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
-<span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">My Issues</span>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 rounded-md border-l-4 border-transparent active:scale-95 transition-transform" href="/admin/notifications.html">
+<span class="material-symbols-outlined" data-icon="notifications">notifications_active</span>
+<span class="font-['Inter'] text-sm leading-relaxed uppercase tracking-[0.05em] font-medium">Notifications</span>
 </a>
 </div>
 <div class="mt-auto">
@@ -262,6 +261,7 @@
   function getStatusBadgeClass(status) {
       if (status === 'OPEN') return 'bg-error animate-pulse shadow-[0_0_8px_rgba(255,180,171,0.6)]';
       if (status === 'IN_PROGRESS') return 'bg-tertiary';
+      if (status === 'PENDING_RESOLUTION') return 'bg-primary-container animate-pulse shadow-[0_0_8px_rgba(91,111,149,0.6)]';
       if (status === 'RESOLVED') return 'bg-on-tertiary-container';
       return 'bg-secondary';
   }
@@ -269,6 +269,7 @@
   function getStatusTextClass(status) {
       if (status === 'OPEN') return 'text-error';
       if (status === 'IN_PROGRESS') return 'text-tertiary';
+      if (status === 'PENDING_RESOLUTION') return 'text-primary-container';
       if (status === 'RESOLVED') return 'text-on-tertiary-container';
       return 'text-secondary';
   }
@@ -276,6 +277,7 @@
   function getBorderClass(status) {
       if (status === 'OPEN') return 'border-error bg-surface-container-highest';
       if (status === 'IN_PROGRESS') return 'border-transparent hover:bg-surface-container-high';
+      if (status === 'PENDING_RESOLUTION') return 'border-primary-container hover:bg-surface-container-highest';
       if (status === 'RESOLVED') return 'border-transparent opacity-75 hover:bg-surface-container-high';
       return 'border-transparent';
   }
