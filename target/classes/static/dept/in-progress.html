@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dept Complaints - Civic Monolith</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "inverse-primary": "#4b5f84",
+                        "outline": "#8e9099",
+                        "surface-variant": "#2d3449",
+                        "on-primary-fixed-variant": "#33476b",
+                        "on-surface": "#dae2fd",
+                        "surface-container-highest": "#2d3449",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary-fixed": "#211240",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary": "#362856",
+                        "on-primary-fixed": "#021b3d",
+                        "secondary": "#c0c7d6",
+                        "on-surface-variant": "#c4c6cf",
+                        "inverse-surface": "#dae2fd",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "primary": "#b2c7f1",
+                        "surface": "#0b1326",
+                        "on-background": "#dae2fd",
+                        "on-error": "#690005",
+                        "on-primary-container": "#eff2ff",
+                        "on-tertiary-fixed-variant": "#4d3f6e",
+                        "tertiary": "#d0bef6",
+                        "surface-dim": "#0b1326",
+                        "primary-container": "#5b6f95",
+                        "secondary-container": "#404754",
+                        "tertiary-fixed": "#eaddff",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#b2c7f1",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#283044",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#d0bef6",
+                        "secondary-fixed": "#dce2f3",
+                        "on-secondary-fixed": "#151c27",
+                        "tertiary-container": "#766799",
+                        "on-secondary": "#2a313d",
+                        "outline-variant": "#44474e",
+                        "primary-fixed": "#d7e3ff",
+                        "surface-tint": "#b2c7f1",
+                        "on-secondary-container": "#aeb5c5",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-primary": "#1b3053",
+                        "surface-container": "#171f33",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary-container": "#f8f0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface-dim text-on-surface min-h-screen flex antialiased">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-64 z-40 bg-[#131b2e] border-r border-slate-800/20 shadow-[40px_0_40px_rgba(218,226,253,0.03)] flex flex-col h-full py-6 px-4 hidden md:flex">
+<div class="flex items-center gap-4 mb-12 px-4">
+<div class="h-10 w-10 rounded-lg bg-gradient-to-br from-primary-container to-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tighter text-slate-100">CIVIC</h1>
+<p class="text-xs text-slate-400 font-medium tracking-wider">Admin Monolith</p>
+</div>
+</div>
+<ul class="flex flex-col gap-2 flex-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/complaints.html" class="flex items-center gap-3 px-4 py-3 rounded-md  text-slate-400 hover:text-slate-200 hover:bg-[#171f33] border-transparent active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                    Assigned Complaints
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-slate-400 hover:text-slate-200 hover:bg-[#171f33] transition-all duration-200 active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" href="/dept/in-progress.html" class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#5B6F95]/20 to-transparent text-slate-100 border-l-4 border-[#5B6F95] active:scale-95 transition-transform font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase">
+<span class="material-symbols-outlined" data-icon="engineering">engineering</span>
+                    In Progress
+                </a>
+</li>
+<li class="mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-tertiary hover:text-tertiary/80 hover:bg-[#171f33] transition-all duration-200 active:scale-95 cursor-pointer font-['Inter'] text-sm leading-relaxed tracking-[0.05em] uppercase" onclick="logout()">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</li>
+</ul>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 z-30 bg-[#0b1326]/80 backdrop-blur-xl border-b border-white/5 flex items-center justify-between px-8 w-full">
+<div class="flex items-center gap-4 focus-within:ring-2 focus-within:ring-[#5B6F95]/40 rounded-lg bg-surface-container-lowest border border-outline-variant/15 px-3 py-1.5 w-64 lg:w-96">
+<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+<input class="bg-transparent border-none text-sm text-on-surface placeholder:text-slate-500 focus:ring-0 w-full p-0" placeholder="Search issues, addresses..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="text-slate-400 hover:text-slate-100 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-slate-100 transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-6 border-l border-white/10">
+<span id="user-name" class="font-['Inter'] text-sm font-medium text-slate-200 hidden sm:block"></span>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/15">
+<img alt="Administrator Profile" class="h-full w-full object-cover" data-alt="professional headshot of a man with short hair in soft office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAObqVOaRyD02qexSu6jFUb8UjpitsGErfesrlAIHhRR9N_L3Z3S3ccBw1Z_SQMk4hTkJiI6AjevDRDKR85FlnYU6bq0DFnAJYXYbx9qEfaHFOoiEjHjAbwY45cyP8GLyE-uW8ctRRWlZkHvYp9McVUuJRj7JRq1DoRoLK1RArC5VKTbbvnutFiEY6QP3_H0wlRB60UueSsnrRIIKq_g5a_01Gy8_tPXoPF3kkVKgOzDCEWgwRZQyyp6p1PBR4iB4UUgNFY9JnH5BA3"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full md:ml-64 pt-24 px-4 md:px-8 pb-12">
+<!-- Header Section -->
+<div class="mb-8">
+<h2 class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium mb-2">In Progress Complaints</h2>
+<h1 class="text-[2.75rem] font-bold tracking-tight text-on-surface leading-none mb-4">Dept Complaints</h1>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<!-- Assigned -->
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container-highest/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="relative z-10 flex flex-col justify-between h-full">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-8 rounded-md bg-surface-container-high flex items-center justify-center shrink-0 border border-outline-variant/15">
+<span class="material-symbols-outlined text-secondary text-sm">assignment</span>
+</div>
+<span class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium">Assigned Issues</span>
+</div>
+<div>
+<span class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">142</span>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-tertiary text-sm">trending_up</span>
+<span class="text-sm text-slate-400">+12 this week</span>
+</div>
+</div>
+</div>
+</div>
+<!-- In Progress -->
+<div class="bg-surface-container rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+</div>
+<div class="relative z-10 flex flex-col justify-between h-full">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-8 rounded-md bg-surface-container-high flex items-center justify-center shrink-0 border border-outline-variant/15">
+<span class="material-symbols-outlined text-tertiary text-sm">engineering</span>
+</div>
+<span class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium">In Progress</span>
+</div>
+<div>
+<span class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">58</span>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-sm text-slate-400">Active deployments</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Resolved (7D) -->
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden group">
+<div class="relative z-10 flex flex-col justify-between h-full">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-8 rounded-md bg-surface-container-high flex items-center justify-center shrink-0 border border-outline-variant/15">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">check_circle</span>
+</div>
+<span class="text-xs uppercase tracking-[0.05em] text-slate-400 font-medium">Resolved (7D)</span>
+</div>
+<div>
+<span class="text-[2.75rem] font-bold tracking-[-0.02em] text-on-surface leading-none block">314</span>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-secondary text-sm">trending_up</span>
+<span class="text-sm text-slate-400">+5% vs last period</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Dense Table Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/15 flex items-center justify-between bg-surface-container-low">
+<h3 class="text-[1.375rem] font-medium text-on-surface tracking-tight">Active Work Orders</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-sm font-medium text-on-surface bg-transparent border border-outline-variant/15 hover:border-outline-variant/40 rounded-md transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+<button class="px-4 py-2 text-sm font-medium text-on-primary-container bg-gradient-to-br from-primary-container to-primary rounded-md transition-all shadow-[0_4px_12px_rgba(91,111,149,0.2)] flex items-center gap-2 hover:shadow-[0_4px_16px_rgba(91,111,149,0.4)]">
+<span class="material-symbols-outlined text-sm">add</span>
+                        New Task
+                    </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-16">ID</th>
+<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Issue Description</th>
+<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15">Location</th>
+<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 w-48">Status Update</th>
+<th class="px-6 py-4 text-xs uppercase tracking-[0.05em] text-slate-400 font-medium border-b border-outline-variant/15 text-right w-64">Action</th>
+</tr>
+</thead>
+
+<tbody id="complaints-list" class="text-sm font-['Inter'] text-slate-300">
+    <tr><td colspan="5" class="text-center py-8 text-slate-500">Loading assigned complaints...</td></tr>
+</tbody>
+
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="p-4 border-t border-outline-variant/15 bg-surface-container-low/50 flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium tracking-wide">SHOWING 1-3 OF 142</span>
+<div class="flex gap-1">
+<button class="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1 text-slate-400 hover:text-slate-200">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+
+<script src="/js/auth.js"></script>
+<script>
+  requireAuth("ROLE_DEPT_ADMIN");
+  document.getElementById("user-name").textContent = getName() || "Dept Admin";
+
+  async function loadDeptComplaints() {
+    const listEl = document.getElementById("complaints-list");
+    try {
+      const allData = await apiFetch("/api/department/complaints");
+      const data = allData ? allData.filter(c => c.status === 'IN_PROGRESS') : [];
+
+      if (data.length === 0) {
+        listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-slate-500">No tasks currently in progress.</td></tr>';
+        return;
+      }
+
+      listEl.innerHTML = data.map(c => `
+        <tr class="hover:bg-surface-container-low transition-colors group border-b border-outline-variant/10">
+            <td class="px-6 py-5 align-top">
+                <span class="font-mono text-xs text-slate-500">#CV-${c.id}</span>
+                <div class="text-xs text-slate-500 mt-2">${new Date(c.createdAt).toLocaleDateString()}</div>
+            </td>
+            <td class="px-6 py-5 align-top">
+                <div class="font-medium text-on-surface mb-1">${c.category}</div>
+                <div class="text-slate-400 text-xs line-clamp-2">${c.description}</div>
+                <div class="text-slate-500 text-xs mt-1">User: ${c.user.name}</div>
+            </td>
+            <td class="px-6 py-5 align-top">
+                <div class="flex items-center gap-2 text-slate-300 text-xs">
+                    <span class="material-symbols-outlined text-sm text-slate-500">location_on</span>
+                    ${c.address}
+                </div>
+            </td>
+            <td class="px-6 py-5 align-top">
+                <div class="flex items-center gap-2 text-sm text-tertiary">
+                    <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> In Progress
+                </div>
+            </td>
+            <td class="px-6 py-5 align-top text-right">
+                <div class="flex flex-col gap-2 items-end">
+                    <input id="comment-${c.id}" type="text" placeholder="Resolution note..." class="bg-surface-container-lowest border border-outline-variant/30 text-xs text-on-surface px-2 py-1.5 rounded w-full max-w-[200px]" />
+                    <button onclick="markCompleted(${c.id})" class="bg-primary-container text-on-primary-container text-xs px-3 py-1.5 rounded hover:opacity-90 font-medium transition-opacity flex items-center gap-1" title="Mark as Completed">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Complete
+                    </button>
+                </div>
+            </td>
+        </tr>
+      `).join("");
+    } catch (e) {
+      listEl.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-error">Error loading department complaints.</td></tr>';
+    }
+  }
+
+  async function markCompleted(id) {
+    const adminComment = document.getElementById(`comment-${id}`).value.trim();
+    try {
+      const data = await apiFetch(`/api/department/update-status/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ status: 'PENDING_RESOLUTION', adminComment: adminComment })
+      });
+
+      if (data?.message) {
+        loadDeptComplaints();
+      } else {
+        alert(data?.error || "Update failed.");
+      }
+    } catch (e) {
+      alert("Server error.");
+    }
+  }
+
+  loadDeptComplaints();
+</script>
+</body>
+</html>
