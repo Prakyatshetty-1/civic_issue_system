@@ -1,0 +1,398 @@
+{
+  "communities": {
+    "0": [
+      "admincontroller",
+      "admincontroller_updatestatus",
+      "assigndto_assigndto",
+      "complaint",
+      "complaint_category",
+      "complaint_repository",
+      "complaint_status",
+      "complaintdto_complaintdto",
+      "datainitializer_seeddepartments",
+      "datainitializer_seedusers",
+      "department",
+      "department_name",
+      "department_repository",
+      "departmentcontroller",
+      "departmentcontroller_getdeptcomplaints",
+      "departmentcontroller_updatestatus",
+      "departmentrepository_departmentrepository",
+      "main_java_com_civic_javacivic_dto_assigndto_java",
+      "main_java_com_civic_javacivic_dto_complaintdto_java",
+      "main_java_com_civic_javacivic_repository_departmentrepository_java",
+      "usercontroller",
+      "usercontroller_createcomplaint",
+      "usercontroller_getmycomplaints"
+    ],
+    "1": [
+      "auth_getname",
+      "complaintrepository_complaintrepository",
+      "complaintrepository_complaintrepository_findbydepartment",
+      "complaintrepository_complaintrepository_findbystatus",
+      "complaintrepository_complaintrepository_findbyuser",
+      "datainitializer_datainitializer",
+      "datainitializer_datainitializer_createdeptadmin",
+      "datainitializer_datainitializer_run",
+      "datainitializer_datainitializer_seeddepartments",
+      "datainitializer_datainitializer_seedusers",
+      "departmentcontroller_departmentcontroller",
+      "departmentcontroller_departmentcontroller_getdeptcomplaints",
+      "departmentcontroller_departmentcontroller_updatestatus",
+      "departmentrepository_departmentrepository_findbyname",
+      "main_java_com_civic_javacivic_controller_departmentcontroller_java",
+      "main_java_com_civic_javacivic_repository_complaintrepository_java",
+      "usercontroller_usercontroller",
+      "usercontroller_usercontroller_createcomplaint",
+      "usercontroller_usercontroller_getmycomplaints",
+      "usercontroller_usercontroller_mapcategorytodepartment",
+      "userrepository_userrepository_findbyemail"
+    ],
+    "2": [
+      "admin_complaints_html",
+      "admin_dashboard_html",
+      "admin_notifications_html",
+      "authjs_getname",
+      "authjs_getrole",
+      "authjs_gettoken",
+      "authjs_logout",
+      "authjs_requireauth",
+      "dept_complaints_html",
+      "dept_dashboard_html",
+      "dept_inprogress_html",
+      "index_html_redirectbyrole",
+      "jwtutil_expiration",
+      "jwtutil_generatetoken",
+      "jwtutil_secret_key",
+      "login_html_handlelogin",
+      "login_html_redirectbyrole",
+      "register_html_handleregister",
+      "user_dashboard_html",
+      "user_mycomplaints_html",
+      "user_report_html"
+    ],
+    "3": [
+      "authcontroller_authcontroller",
+      "authcontroller_authcontroller_login",
+      "authcontroller_authcontroller_register",
+      "authservice",
+      "commandlinerunner",
+      "datainitializer",
+      "javacivicapplication_main",
+      "main_java_com_civic_javacivic_config_datainitializer_java",
+      "main_java_com_civic_javacivic_controller_authcontroller_java",
+      "main_java_com_civic_javacivic_model_user_java",
+      "main_java_com_civic_javacivic_repository_userrepository_java",
+      "main_java_com_civic_javacivic_security_userdetailsserviceimpl_java",
+      "securityconfig",
+      "securityconfig_filterchain",
+      "user",
+      "user_role",
+      "user_user",
+      "userdetailsservice",
+      "userdetailsserviceimpl_userdetailsserviceimpl",
+      "userrepository",
+      "userrepository_userrepository"
+    ],
+    "4": [
+      "javacivicapplication_javacivicapplication",
+      "javacivicapplication_javacivicapplication_main",
+      "jwtfilter_jwtfilter",
+      "jwtfilter_jwtfilter_dofilterinternal",
+      "jwtutil_jwtutil",
+      "jwtutil_jwtutil_extractemail",
+      "jwtutil_jwtutil_generatetoken",
+      "jwtutil_jwtutil_getclaims",
+      "jwtutil_jwtutil_getkey",
+      "jwtutil_jwtutil_isvalid",
+      "main_java_com_civic_javacivic_javacivicapplication_java",
+      "main_java_com_civic_javacivic_security_jwtfilter_java",
+      "main_java_com_civic_javacivic_security_jwtutil_java",
+      "onceperrequestfilter"
+    ],
+    "5": [
+      "auth_apifetch",
+      "auth_getemail",
+      "auth_getrole",
+      "auth_gettoken",
+      "auth_logout",
+      "auth_requireauth",
+      "auth_statusbadge",
+      "authservice_authservice",
+      "authservice_authservice_login",
+      "authservice_authservice_register",
+      "main_java_com_civic_javacivic_service_authservice_java",
+      "main_resources_static_js_auth_js",
+      "userdetailsserviceimpl_userdetailsserviceimpl_loaduserbyusername",
+      "userrepository_userrepository_existsbyemail"
+    ],
+    "6": [
+      "admincontroller_admincontroller",
+      "admincontroller_admincontroller_assigndepartment",
+      "admincontroller_admincontroller_getallcomplaints",
+      "admincontroller_admincontroller_updatestatus",
+      "admincontroller_assign",
+      "assigndto",
+      "department_department",
+      "main_java_com_civic_javacivic_controller_admincontroller_java",
+      "main_java_com_civic_javacivic_model_department_java"
+    ],
+    "7": [
+      "authcontroller",
+      "authcontroller_login",
+      "authcontroller_register",
+      "authservice_login",
+      "authservice_register",
+      "loginrequest",
+      "registerrequest"
+    ],
+    "8": [
+      "main_java_com_civic_javacivic_config_securityconfig_java",
+      "securityconfig_securityconfig",
+      "securityconfig_securityconfig_authmanager",
+      "securityconfig_securityconfig_filterchain",
+      "securityconfig_securityconfig_passwordencoder"
+    ],
+    "9": [
+      "jwtfilter_dofilterinternal",
+      "jwtutil_extractemail",
+      "jwtutil_getclaims",
+      "jwtutil_isvalid",
+      "userdetailsserviceimpl_loaduserbyusername"
+    ],
+    "10": [
+      "complaint_complaint",
+      "complaintdto",
+      "main_java_com_civic_javacivic_controller_usercontroller_java",
+      "main_java_com_civic_javacivic_model_complaint_java"
+    ],
+    "11": [
+      "javacivicapplicationtests_javacivicapplicationtests",
+      "javacivicapplicationtests_javacivicapplicationtests_contextloads",
+      "test_java_com_civic_javacivic_javacivicapplicationtests_java"
+    ],
+    "12": [
+      "main_java_com_civic_javacivic_dto_registerrequest_java",
+      "registerrequest_registerrequest"
+    ],
+    "13": [
+      "loginrequest_loginrequest",
+      "main_java_com_civic_javacivic_dto_loginrequest_java"
+    ],
+    "14": [
+      "javacivicapplicationtests_contextloads",
+      "readme_gettingstarted"
+    ],
+    "15": [
+      "civicpulse_landing_page_code",
+      "login_page_dark_mode_code"
+    ],
+    "16": [
+      "issue_detail_sovereign_saas_code",
+      "my_reports_sovereign_saas_code"
+    ],
+    "17": [
+      "admin_operations_sovereign_saas_code",
+      "user_dashboard_sovereign_saas_code"
+    ],
+    "18": [
+      "civic_ledger_desain",
+      "slate_urban_desain"
+    ],
+    "19": [
+      "authjs_apifetch"
+    ],
+    "20": [
+      "role_main_admin"
+    ],
+    "21": [
+      "role_dept_admin"
+    ],
+    "22": [
+      "role_user"
+    ],
+    "23": [
+      "help_civicissuesystem"
+    ],
+    "24": [
+      "department_queue_sovereign_saas_code"
+    ],
+    "25": [
+      "report_issue_sovereign_saas_code"
+    ]
+  },
+  "cohesion": {
+    "0": 0.14,
+    "1": 0.16,
+    "2": 0.11,
+    "3": 0.14,
+    "4": 0.21,
+    "5": 0.22,
+    "6": 0.22,
+    "7": 0.33,
+    "8": 0.4,
+    "9": 0.6,
+    "10": 0.5,
+    "11": 0.67,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 2.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0
+  },
+  "gods": [
+    {
+      "id": "complaint",
+      "label": "Complaint",
+      "degree": 11
+    },
+    {
+      "id": "userrepository",
+      "label": "UserRepository",
+      "degree": 10
+    },
+    {
+      "id": "authjs_requireauth",
+      "label": "Require Authentication Guard",
+      "degree": 9
+    },
+    {
+      "id": "department",
+      "label": "Department",
+      "degree": 9
+    },
+    {
+      "id": "user",
+      "label": "User",
+      "degree": 9
+    },
+    {
+      "id": "authservice",
+      "label": "AuthService",
+      "degree": 9
+    },
+    {
+      "id": "datainitializer",
+      "label": "DataInitializer",
+      "degree": 8
+    },
+    {
+      "id": "jwtutil_jwtutil",
+      "label": "JwtUtil",
+      "degree": 7
+    },
+    {
+      "id": "auth_getname",
+      "label": "getName()",
+      "degree": 7
+    },
+    {
+      "id": "complaint_repository",
+      "label": "ComplaintRepository",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Logout Function",
+      "target": "Handle Login",
+      "source_files": [
+        "src/main/resources/static/js/auth.js",
+        "src/main/resources/static/login.html"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 doc); peripheral node `Logout Function` unexpectedly reaches hub `Handle Login`"
+    },
+    {
+      "source": "Getting Started",
+      "target": "contextLoads",
+      "source_files": [
+        "README.md",
+        "src/test/java/com/civic/javacivic/JavacivicApplicationTests.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "crosses file types (doc \u2194 code); connects across different repos/directories"
+    },
+    {
+      "source": "Handle Login",
+      "target": "Generate Token",
+      "source_files": [
+        "src/main/resources/static/login.html",
+        "src/main/java/com/civic/javacivic/security/JwtUtil.java"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 doc)"
+    },
+    {
+      "source": "Handle Register",
+      "target": "Generate Token",
+      "source_files": [
+        "src/main/resources/static/register.html",
+        "src/main/java/com/civic/javacivic/security/JwtUtil.java"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 doc)"
+    },
+    {
+      "source": "Handle Login",
+      "target": "Get Token from Storage",
+      "source_files": [
+        "src/main/resources/static/login.html",
+        "src/main/resources/static/js/auth.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "crosses file types (code \u2194 doc); peripheral node `Get Token from Storage` unexpectedly reaches hub `Handle Login`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `AuthService` connect `Community 3` to `Community 4`, `Community 7`?",
+      "why": "High betweenness centrality (0.122) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `User` connect `Community 3` to `Community 0`, `Community 5`?",
+      "why": "High betweenness centrality (0.081) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Complaint` connect `Community 0` to `Community 3`, `Community 6`?",
+      "why": "High betweenness centrality (0.071) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 5 inferred relationships involving `Complaint` (e.g. with `CreateComplaint` and `Assign`) actually correct?",
+      "why": "`Complaint` has 5 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `RegisterRequest`, `LoginRequest`, `Logout Function` to the rest of the system?",
+      "why": "34 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.11 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
