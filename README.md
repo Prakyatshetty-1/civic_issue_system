@@ -32,11 +32,11 @@ A full-stack web application for civil grievance redressal, enabling citizens to
 │  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘                          │
 │         │                 │                 │                               │
 │  ┌──────▼──────┐  ┌──────▼──────┐  ┌──────▼──────┐                          │
-│  │ UserRepository│ │ ComplaintRepo│ │ DeptRepo    │                         │
+│  │  UserRepo   │  │ComplaintRepo│  │ DeptRepo    │                          │
 │  └─────────────┘  └─────────────┘  └─────────────┘                          │
 │                                                                             │
 │  ┌──────────────────────────────────────────────────────┐                   │
-│  │                   JWT Security Layer                   │                 │
+│  │                   JWT Security Layer                 │                   │
 │  │  Authentication → JwtFilter → UserDetailsServiceImpl │                   │
 │  └──────────────────────────────────────────────────────┘                   │
 └─────────────────────────────────────────────────────────────────────────────┘

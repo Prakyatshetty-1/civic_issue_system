@@ -29,6 +29,9 @@ public class Complaint {
     @Column(nullable = false)
     private String address;
 
+    private Double latitude;
+    private Double longitude;
+
     private String imageUrl;
 
     @Enumerated(EnumType.STRING)

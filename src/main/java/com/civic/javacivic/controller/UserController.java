@@ -34,6 +34,8 @@ public class UserController {
         complaint.setCategory(dto.getCategory());
         complaint.setDescription(dto.getDescription());
         complaint.setAddress(dto.getAddress());
+        complaint.setLatitude(dto.getLatitude());
+        complaint.setLongitude(dto.getLongitude());
         complaint.setImageUrl(dto.getImageUrl());
         complaint.setStatus(Complaint.Status.ASSIGNED); // Automatically assigned
         complaint.setUser(user);
